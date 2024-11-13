@@ -1,0 +1,14 @@
+Build/*
+!Build/.keep
+
+Obj/*
+!Obj/.keep
+
+NuGet/*
+!NuGet/.keep
+
+Packages/*
+!Packages/.keep
+
+Publish/*
+!Publish/.keep

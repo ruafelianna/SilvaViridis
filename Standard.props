@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup Label="FrameworkProperties">
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+</Project>

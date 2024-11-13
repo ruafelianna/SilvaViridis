@@ -1,0 +1,23 @@
+<Project>
+  <PropertyGroup Label="FrameworkProperties">
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Label="AssemblyProperties">
+    <Authors>Maria Sorokina</Authors>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <PackageVersion>1.0.0-alpha</PackageVersion>
+  </PropertyGroup>
+  <PropertyGroup Label="PathProperties">
+    <RootFolder>$(MSBuildThisFileDirectory)</RootFolder>
+    <BaseOutputPath>$(RootFolder)Build\$(MSBuildProjectName)\</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(RootFolder)Obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <PackageOutputPath>$(RootFolder)Packages\</PackageOutputPath>
+    <PublishDir>$(MSBuildThisFileDirectory)Publish\$(MSBuildProjectName)\</PublishDir>
+  </PropertyGroup>
+  <PropertyGroup Label="BuildProperties">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+</Project>

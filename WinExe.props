@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <OutputType>winexe</OutputType>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+</Project>

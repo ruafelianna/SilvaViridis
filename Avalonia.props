@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup Label="BuildProperties">
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+</Project>

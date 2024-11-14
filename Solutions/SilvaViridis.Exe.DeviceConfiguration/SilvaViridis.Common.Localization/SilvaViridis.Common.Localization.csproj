@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="$(RootFolder)Standard.props" />
+  <ItemGroup>
+    <ProjectReference Include="..\SilvaViridis.Common.Localization.Abstractions\SilvaViridis.Common.Localization.Abstractions.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="$(RootFolder)WinExe.props" />
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+  <PropertyGroup Label="AssemblyProperties">
+    <ApplicationIcon>Assets/main.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Fonts.Inter" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia\SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.csproj" />
+  </ItemGroup>
+</Project>

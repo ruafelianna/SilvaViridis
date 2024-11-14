@@ -5,6 +5,7 @@
   <PropertyGroup Label="Versions">
     <Version_Avalonia>11.2.0</Version_Avalonia>
     <Version_Microsoft>9.0.0</Version_Microsoft>
+    <Version_MvvmDialogs>2.1.0</Version_MvvmDialogs>
     <Version_Microsoft_EFCore>9.0.0</Version_Microsoft_EFCore>
     <Version_ReactiveUI>20.1.63</Version_ReactiveUI>
   </PropertyGroup>
@@ -25,6 +26,11 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(Version_Microsoft)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="$(Version_Microsoft)" />
   </ItemGroup>
+  <ItemGroup Label="MvvmDialogsPackages">
+    <PackageVersion Include="HanumanInstitute.MvvmDialogs.Avalonia" Version="$(Version_MvvmDialogs)" />
+    <PackageVersion Include="HanumanInstitute.MvvmDialogs.Avalonia.MessageBox" Version="$(Version_MvvmDialogs)" />
+    <PackageVersion Include="HanumanInstitute.MvvmDialogs.Avalonia.DialogHost" Version="$(Version_MvvmDialogs)" />
+  </ItemGroup>
   <ItemGroup Label="ReactiveUIPackages">
     <PackageVersion Include="ReactiveUI" Version="$(Version_ReactiveUI)" />
     <PackageVersion Include="ReactiveUI.SourceGenerators" Version="2.0.17" />
@@ -38,6 +44,7 @@
   <ItemGroup Label="OtherPackages">
     <PackageVersion Include="BaGet.Protocol" Version="0.4.0-preview2" />
     <PackageVersion Include="IsExternalInit" Version="1.0.3" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="7.0.0" />
     <PackageVersion Include="Tommy" Version="3.1.2" />
   </ItemGroup>
 </Project>

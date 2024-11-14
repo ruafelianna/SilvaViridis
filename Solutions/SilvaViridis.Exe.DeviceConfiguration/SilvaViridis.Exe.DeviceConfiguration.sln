@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Exe.DeviceConf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Exe.DeviceConfiguration.Server", "SilvaViridis.Exe.DeviceConfiguration.Server\SilvaViridis.Exe.DeviceConfiguration.Server.csproj", "{BE50D053-FC82-4B32-B10E-0E08030CF741}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Common.CSharp.Consts", "SilvaViridis.Common.CSharp.Consts\SilvaViridis.Common.CSharp.Consts.csproj", "{B5E29CA7-1C91-4BD7-B121-C06A4E7E7D85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BE50D053-FC82-4B32-B10E-0E08030CF741}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE50D053-FC82-4B32-B10E-0E08030CF741}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE50D053-FC82-4B32-B10E-0E08030CF741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5E29CA7-1C91-4BD7-B121-C06A4E7E7D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E29CA7-1C91-4BD7-B121-C06A4E7E7D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E29CA7-1C91-4BD7-B121-C06A4E7E7D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E29CA7-1C91-4BD7-B121-C06A4E7E7D85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

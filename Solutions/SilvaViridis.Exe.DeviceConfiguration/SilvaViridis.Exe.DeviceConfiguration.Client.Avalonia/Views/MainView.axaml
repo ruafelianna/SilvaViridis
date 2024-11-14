@@ -4,6 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="using:SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels"
+             xmlns:ctrl="using:SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Controls"
              x:Class="SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.MainView"
              x:DataType="vm:MainViewModel">
+  <Grid ColumnDefinitions="Auto,*">
+    <ctrl:SimpleExpander Classes="menu-panel"
+                         Grid.Column="0">
+      <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+        </StackPanel>
+      </ScrollViewer>
+    </ctrl:SimpleExpander>
+
+    <Grid Grid.Column="1">
+      <ContentControl />
+    </Grid>
+  </Grid>
 </UserControl>

@@ -1,0 +1,21 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrl="using:SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Controls">
+
+  <Style Selector="ToggleButton">
+    <Setter Property="Cursor" Value="Hand"/>
+  </Style>
+
+  <Style Selector="ctrl|SimpleExpander">
+    <Setter Property="MinWidth" Value="0"/>
+
+    <Style Selector="^.menu-panel">
+      <Setter Property="ExpandDirection" Value="Right"/>
+
+      <Style Selector="^:expanded">
+        <Setter Property="MinWidth" Value="400"/>
+      </Style>
+    </Style>
+  </Style>
+
+</Styles>

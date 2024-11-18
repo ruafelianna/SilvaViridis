@@ -19,5 +19,6 @@
   </PropertyGroup>
   <PropertyGroup Label="BuildProperties">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NoWarn>$(NoWarn);RXUISG0016</NoWarn>
   </PropertyGroup>
 </Project>

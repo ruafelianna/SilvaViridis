@@ -1,6 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(RootFolder)Standard.props" />
   <ItemGroup>
+    <PackageReference Include="IsExternalInit" />
+    <PackageReference Include="ReactiveUI" />
+    <PackageReference Include="ReactiveUI.SourceGenerators" />
+    <PackageReference Include="SilvaViridis.Common.Localization.Generators" />
+    <PackageReference Include="System.Collections.Immutable" />
+    <PackageReference Include="Tommy" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SilvaViridis.Common.Localization.Abstractions\SilvaViridis.Common.Localization.Abstractions.csproj" />
   </ItemGroup>
 </Project>

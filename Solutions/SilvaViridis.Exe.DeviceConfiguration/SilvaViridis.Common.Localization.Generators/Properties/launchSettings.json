@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DebugClient": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\SilvaViridis.Exe.DeviceConfiguration.Client\\SilvaViridis.Exe.DeviceConfiguration.Client.csproj"
+    }
+  }
+}

@@ -3,13 +3,19 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <PropertyGroup Label="Versions">
+    <Version_SilvaViridis>1.0.0-alpha</Version_SilvaViridis>
     <Version_Avalonia>11.2.0</Version_Avalonia>
+    <Version_LanguageExt>4.4.9</Version_LanguageExt>
     <Version_Microsoft>9.0.0</Version_Microsoft>
     <Version_Microsoft_Analyzer>4.10.0</Version_Microsoft_Analyzer>
     <Version_Microsoft_EFCore>9.0.0</Version_Microsoft_EFCore>
     <Version_MvvmDialogs>2.1.0</Version_MvvmDialogs>
     <Version_ReactiveUI>20.1.63</Version_ReactiveUI>
   </PropertyGroup>
+  <ItemGroup Label="SilvaViridisPackages">
+    <PackageVersion Include="SilvaViridis.Common.CSharp.Consts" Version="$(Version_SilvaViridis)" />
+    <PackageVersion Include="SilvaViridis.Common.Localization.Generators" Version="1.0.0-alpha0013" />
+  </ItemGroup>
   <ItemGroup Label="AvaloniaPackages">
     <PackageVersion Include="Avalonia" Version="$(Version_Avalonia)" />
     <PackageVersion Include="Avalonia.Controls.TreeDataGrid" Version="11.0.10" />
@@ -18,6 +24,9 @@
     <PackageVersion Include="Avalonia.Fonts.Inter" Version="$(Version_Avalonia)" />
     <PackageVersion Include="Avalonia.ReactiveUI" Version="$(Version_Avalonia)" />
     <PackageVersion Include="Avalonia.Themes.Fluent" Version="$(Version_Avalonia)" />
+  </ItemGroup>
+  <ItemGroup Label="LanguageExtPackages">
+    <PackageVersion Include="LanguageExt.Core" Version="$(Version_LanguageExt)" />
   </ItemGroup>
   <ItemGroup Label="MicrosoftPackages">
     <PackageVersion Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
@@ -38,6 +47,7 @@
     <PackageVersion Include="ReactiveUI.Validation" Version="4.1.1" />
   </ItemGroup>
   <ItemGroup Label="SystemPackages">
+    <PackageVersion Include="System.Collections.Immutable" Version="$(Version_Microsoft)" />
     <PackageVersion Include="System.Configuration.ConfigurationManager" Version="$(Version_Microsoft)" />
     <PackageVersion Include="System.IO.Ports" Version="$(Version_Microsoft)" />
     <PackageVersion Include="System.Runtime" Version="4.3.1" />

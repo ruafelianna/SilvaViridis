@@ -2,4 +2,11 @@
   <ItemGroup>
     <PackageReference Include="ReactiveUI" Version="$(ReactiveUIVersion)" />
   </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="**\*.toml" />
+    <EmbeddedResource Include="**\*.toml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SilvaViridis.Common.Localization\SilvaViridis.Common.Localization.csproj" />
+  </ItemGroup>
 </Project>

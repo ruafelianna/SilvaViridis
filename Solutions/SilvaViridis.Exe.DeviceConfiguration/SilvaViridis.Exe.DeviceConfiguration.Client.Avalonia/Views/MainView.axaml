@@ -5,6 +5,9 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="using:SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels"
              xmlns:ctrl="using:SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Controls"
+             xmlns:tr="using:SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations"
+             xmlns:intr="using:SilvaViridis.Exe.DeviceConfiguration.Client.Interactions"
+             xmlns:ic="using:FluentIcons.Avalonia"
              x:Class="SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.MainView"
              x:DataType="vm:MainViewModel">
   <Grid ColumnDefinitions="Auto,*">
@@ -12,6 +15,23 @@
                          Grid.Column="0">
       <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
+          <StackPanel Orientation="Horizontal"
+                      Classes="menu-settings">
+            <ic:SymbolIcon Symbol="LocalLanguage"
+                           IconVariant="Regular"/>
+            <ComboBox ItemsSource="{Binding Languages}"
+                      SelectedValue="{Binding SelectedLanguage}"
+                      SelectedValueBinding="{Binding Key}">
+              <ComboBox.ItemTemplate>
+                <DataTemplate>
+                  <TextBlock Text="{Binding Value^}"/>
+                </DataTemplate>
+              </ComboBox.ItemTemplate>
+            </ComboBox>
+          </StackPanel>
+          <Button Content="{Binding Value, Source={x:Static tr:Strings.Menu_Exit}}"
+                  Command="{Binding CmdExit}"
+                  Classes="menu-item" />
         </StackPanel>
       </ScrollViewer>
     </ctrl:SimpleExpander>

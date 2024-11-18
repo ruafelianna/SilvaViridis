@@ -5,6 +5,7 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" />
     <PackageReference Include="Avalonia.ReactiveUI" />
     <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="FluentIcons.Avalonia" />
     <PackageReference Include="HanumanInstitute.MvvmDialogs.Avalonia" />
     <PackageReference Include="HanumanInstitute.MvvmDialogs.Avalonia.DialogHost" />
     <PackageReference Include="HanumanInstitute.MvvmDialogs.Avalonia.MessageBox" />

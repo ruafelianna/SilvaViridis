@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Components.Men
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Components.Menu.Abstractions", "SilvaViridis.Components.Menu.Abstractions\SilvaViridis.Components.Menu.Abstractions.csproj", "{DF10D30C-9E1C-437B-8180-7B1FD3479138}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Components", "SilvaViridis.Components\SilvaViridis.Components.csproj", "{983AF61E-7A2F-4729-A6A5-092755B4C043}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Components.Generators", "SilvaViridis.Components.Generators\SilvaViridis.Components.Generators.csproj", "{92707472-823E-4CD0-8642-B37104AA417A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{DF10D30C-9E1C-437B-8180-7B1FD3479138}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF10D30C-9E1C-437B-8180-7B1FD3479138}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF10D30C-9E1C-437B-8180-7B1FD3479138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{983AF61E-7A2F-4729-A6A5-092755B4C043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{983AF61E-7A2F-4729-A6A5-092755B4C043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{983AF61E-7A2F-4729-A6A5-092755B4C043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{983AF61E-7A2F-4729-A6A5-092755B4C043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92707472-823E-4CD0-8642-B37104AA417A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92707472-823E-4CD0-8642-B37104AA417A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92707472-823E-4CD0-8642-B37104AA417A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92707472-823E-4CD0-8642-B37104AA417A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

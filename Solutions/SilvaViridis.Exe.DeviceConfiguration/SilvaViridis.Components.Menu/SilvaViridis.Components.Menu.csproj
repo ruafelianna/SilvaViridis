@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="$(RootFolder)Standard.props" />
+  <ItemGroup>
+    <ProjectReference Include="..\SilvaViridis.Components.Menu.Abstractions\SilvaViridis.Components.Menu.Abstractions.csproj" />
+  </ItemGroup>
+</Project>

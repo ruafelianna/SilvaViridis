@@ -1,16 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(RootFolder)Analyzer.props" />
   <PropertyGroup>
-    <PackageVersion>1.0.0-alpha0013</PackageVersion>
+    <PackageVersion>1.0.0-alpha0015</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="LanguageExt.Core" PrivateAssets="all" GeneratePathProperty="true" />
-    <PackageReference Include="SilvaViridis.Common.CSharp.Consts" PrivateAssets="all" GeneratePathProperty="true" />
     <PackageReference Include="Tommy" PrivateAssets="all" GeneratePathProperty="true" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(PkgLanguageExt_Core)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    <None Include="$(PkgSilvaViridis_Common_CSharp_Consts)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     <None Include="$(PkgTommy)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
   </ItemGroup>
   <ItemGroup>

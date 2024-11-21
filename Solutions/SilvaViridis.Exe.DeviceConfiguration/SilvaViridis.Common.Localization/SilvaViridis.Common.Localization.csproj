@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(RootFolder)Standard.props" />
   <ItemGroup>
-    <PackageReference Include="IsExternalInit" />
     <PackageReference Include="ReactiveUI" />
     <PackageReference Include="ReactiveUI.SourceGenerators" />
     <PackageReference Include="SilvaViridis.Common.Localization.Generators" />

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DebugConsts": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\SilvaViridis.Common.CSharp.Consts\\SilvaViridis.Common.CSharp.Consts.csproj"
+    }
+  }
+}

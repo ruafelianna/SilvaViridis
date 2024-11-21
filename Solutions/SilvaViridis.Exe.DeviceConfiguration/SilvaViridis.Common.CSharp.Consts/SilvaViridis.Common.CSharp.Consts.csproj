@@ -1,6 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(RootFolder)Standard.props" />
   <PropertyGroup>
-    <PackageVersion>1.0.0-alpha0002</PackageVersion>
+    <PackageVersion>1.0.0-alpha0003</PackageVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="SilvaViridis.Common.CSharp.Consts.Generators" />
+  </ItemGroup>
 </Project>

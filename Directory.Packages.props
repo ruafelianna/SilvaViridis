@@ -13,7 +13,7 @@
     <Version_ReactiveUI>20.1.63</Version_ReactiveUI>
   </PropertyGroup>
   <ItemGroup Label="SilvaViridisPackages">
-    <PackageVersion Include="SilvaViridis.Common.CSharp.Consts" Version="$(Version_SilvaViridis)" />
+    <PackageVersion Include="SilvaViridis.Common.CSharp.Consts" Version="1.0.0-alpha0002" />
     <PackageVersion Include="SilvaViridis.Common.Localization.Generators" Version="1.0.0-alpha0013" />
   </ItemGroup>
   <ItemGroup Label="AvaloniaPackages">

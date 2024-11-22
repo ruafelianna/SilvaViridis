@@ -206,12 +206,12 @@ namespace SilvaViridis.Common.Localization.Generators
                 ""{config.DefaultLocale}""
             );
 
-{string.Join("\n", translationUnits)}
+{string.Join(NewLine, translationUnits)}
         }}
 
         {KW_Public} {KW_Static} {I_TranslationProvider} {CL_TranslationProvider} {{ {KW_Get}; }}
 
-{string.Join("\n", translationProperties)}
+{string.Join(NewLine, translationProperties)}
     }}
 }}
 ";

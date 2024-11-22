@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(RootFolder)Standard.props" />
   <PropertyGroup>
-    <PackageVersion>1.0.0-alpha0005</PackageVersion>
+    <PackageVersion>1.0.0-alpha0008</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="IndexRange" />

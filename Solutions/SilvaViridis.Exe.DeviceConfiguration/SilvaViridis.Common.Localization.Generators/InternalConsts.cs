@@ -44,6 +44,8 @@ namespace SilvaViridis.Common.Localization.Generators
 
         public const string Tab = "    ";
 
+        public const string NewLine = "\n";
+
         public const string AnalyzerOptions_Project_Dir = "build_property.projectdir";
 
         #endregion

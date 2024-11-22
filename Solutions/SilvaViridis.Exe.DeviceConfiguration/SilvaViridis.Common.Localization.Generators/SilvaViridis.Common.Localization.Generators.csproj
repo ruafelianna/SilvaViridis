@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(RootFolder)Analyzer.props" />
   <PropertyGroup>
-    <PackageVersion>1.0.0-alpha0015</PackageVersion>
+    <PackageVersion>1.0.0-alpha0019</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="LanguageExt.Core" PrivateAssets="all" GeneratePathProperty="true" />

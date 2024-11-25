@@ -16,9 +16,7 @@ namespace SilvaViridis.Common.Localization
         ReactiveObject,
         ITranslationProvider
     {
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         public TranslationProvider(
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
             Assembly assembly,
             string path,
             string invariant
@@ -50,7 +48,7 @@ namespace SilvaViridis.Common.Localization
         }
 
         [Reactive]
-        private CultureInfo _culture;
+        private CultureInfo _culture = null!;
 
         public CultureInfo DefaultCulture { get; }
 

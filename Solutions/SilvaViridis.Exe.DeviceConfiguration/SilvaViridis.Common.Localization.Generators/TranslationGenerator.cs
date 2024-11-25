@@ -160,8 +160,8 @@ namespace SilvaViridis.Common.Localization.Generators
                         .RawTable
                         .Select(t => t.Key);
 
-                    var translationPath = localeConfig.ConfFileDirectory
-                        .Substring((projectDir?.Length ?? 1) - 1);
+                    var translationPath = localeConfig
+                        .ConfFileDirectory[((projectDir?.Length ?? 1) - 1)..];
 
                     return new DefaultConfig(
                         localeConfig.GenClass,

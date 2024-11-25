@@ -16,7 +16,7 @@ namespace SilvaViridis.Common.Text.Extensions
             this string str,
             string start
         ) => str.StartsWith(start)
-            ? str.Substring(start.Length)
+            ? str[start.Length..]
             : str;
     }
 }

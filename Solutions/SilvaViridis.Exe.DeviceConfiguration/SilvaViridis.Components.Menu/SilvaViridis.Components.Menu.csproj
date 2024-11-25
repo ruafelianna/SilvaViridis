@@ -2,5 +2,6 @@
   <Import Project="$(RootFolder)Standard.props" />
   <ItemGroup>
     <ProjectReference Include="..\SilvaViridis.Components.Menu.Abstractions\SilvaViridis.Components.Menu.Abstractions.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Components\SilvaViridis.Components.csproj" />
   </ItemGroup>
 </Project>

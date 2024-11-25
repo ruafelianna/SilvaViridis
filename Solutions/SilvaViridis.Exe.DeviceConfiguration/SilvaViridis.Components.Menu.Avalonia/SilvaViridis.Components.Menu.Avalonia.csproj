@@ -3,4 +3,7 @@
   <ItemGroup>
     <PackageReference Include="Avalonia" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SilvaViridis.Components.Menu.Abstractions\SilvaViridis.Components.Menu.Abstractions.csproj" />
+  </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 using Microsoft.CodeAnalysis;
 using SilvaViridis.Common.Text.Extensions;
+using System;
 using System.Linq;
 
 namespace SilvaViridis.Common.Generators.Extensions
@@ -17,10 +18,25 @@ namespace SilvaViridis.Common.Generators.Extensions
                     arg => arg.Key == key
                 );
 
-            if (attrValue.Value.Value is T value)
+            if (attrValue.Key is null)
+            {
+                return default;
+            }
+
+            var objType = typeof(T);
+            var value = attrValue.Value.Value;
+
+            if (
+                objType.IsEnum
+                && objType.IsEnumDefined(value)
+            )
+            {
+                return (T)Enum.ToObject(objType, value);
+            }
+            else if (value is T result)
             {
                 if (
-                    value is string str
+                    result is string str
                     && checkStringEmpty
                     && str.IsNullOrWhiteSpace()
                 )
@@ -28,7 +44,7 @@ namespace SilvaViridis.Common.Generators.Extensions
                     return default;
                 }
 
-                return value;
+                return result;
             }
 
             return default;

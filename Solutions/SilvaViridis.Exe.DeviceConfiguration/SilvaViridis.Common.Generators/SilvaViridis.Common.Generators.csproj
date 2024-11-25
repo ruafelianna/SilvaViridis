@@ -1,10 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(RootFolder)Standard.props" />
   <PropertyGroup>
-    <PackageVersion>1.0.0-alpha0008</PackageVersion>
+    <PackageVersion>1.0.0-alpha0012</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="IndexRange" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
     <PackageReference Include="SilvaViridis.Common.CSharp.Consts" />
     <PackageReference Include="SilvaViridis.Common.Text" />

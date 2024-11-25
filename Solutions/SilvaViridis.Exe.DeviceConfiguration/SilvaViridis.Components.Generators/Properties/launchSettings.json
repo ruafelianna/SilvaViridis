@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DebugMenu": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\SilvaViridis.Components.Menu\\SilvaViridis.Components.Menu.csproj"
+    }
+  }
+}

@@ -1,12 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <PackageReference Include="ReactiveUI" Version="$(ReactiveUIVersion)" />
-  </ItemGroup>
-  <ItemGroup>
     <AdditionalFiles Include="**\*.toml" />
     <EmbeddedResource Include="**\*.toml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SilvaViridis.Common.Localization\SilvaViridis.Common.Localization.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Components\SilvaViridis.Components.csproj" />
   </ItemGroup>
 </Project>

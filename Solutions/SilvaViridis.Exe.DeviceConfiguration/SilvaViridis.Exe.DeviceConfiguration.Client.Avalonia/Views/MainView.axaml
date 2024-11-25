@@ -6,7 +6,7 @@
              x:Class="SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.MainView"
              x:DataType="vm:MainViewModel"
              xmlns:vm="using:SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels"
-             xmlns:ctrl="using:SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Controls"
+             xmlns:ctrl="using:SilvaViridis.Components.Avalonia.Controls"
              xmlns:amn="using:SilvaViridis.Components.Menu.Abstractions"
              xmlns:menu="using:SilvaViridis.Components.Menu.Avalonia">
   <Grid ColumnDefinitions="Auto,*">

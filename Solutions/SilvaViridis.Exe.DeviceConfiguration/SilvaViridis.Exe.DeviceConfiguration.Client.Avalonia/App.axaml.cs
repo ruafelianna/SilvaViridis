@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Markup.Xaml;
+using Avalonia.Styling;
 using HanumanInstitute.MvvmDialogs.Avalonia;
 using HanumanInstitute.MvvmDialogs.Avalonia.MessageBox;
 using Microsoft.Extensions.Logging;
@@ -63,6 +64,20 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
 
                     Strings.TranslationProvider.Culture
                         = new(lang);
+
+                    ctx.SetOutput(Unit.Default);
+                });
+
+            appInteractions.ChangeTheme
+                .RegisterHandler(ctx => {
+                    RequestedThemeVariant = ctx.Input switch
+                    {
+                        AvailableThemes.Light
+                            => ThemeVariant.Light,
+                        AvailableThemes.Dark
+                            => ThemeVariant.Dark,
+                        _ => ThemeVariant.Default,
+                    };
 
                     ctx.SetOutput(Unit.Default);
                 });

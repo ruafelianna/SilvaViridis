@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SilvaViridis.Components.Menu.Avalonia\SilvaViridis.Components.Menu.Avalonia.csproj" />
     <ProjectReference Include="..\SilvaViridis.Exe.DeviceConfiguration.Client\SilvaViridis.Exe.DeviceConfiguration.Client.csproj" />
   </ItemGroup>
 </Project>

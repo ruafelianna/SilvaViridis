@@ -1,13 +1,7 @@
-using ReactiveUI;
-using ReactiveUI.SourceGenerators;
 using SilvaViridis.Components;
-using SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations;
+using SilvaViridis.Components.Menu;
+using SilvaViridis.Components.Menu.Abstractions;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Interactions;
-using System;
-using System.Collections.Frozen;
-using System.Collections.Generic;
-using System.Reactive;
-using System.Reactive.Linq;
 
 namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
 {
@@ -15,40 +9,19 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
     {
         public MainViewModel(AppInteractions appInteractions)
         {
-            _selectedLanguage = AvailableLanguages.en_US;
+            _viewSettingsViewModel = new(appInteractions);
+            _exitViewModel = new(appInteractions);
 
-            this
-                .WhenAnyValue(vm => vm.SelectedLanguage)
-                .Select(
-                    async lang => await appInteractions
-                        .ChangeLanguage
-                        .Handle(lang)
-                )
-                .Concat()
-                .Subscribe();
-
-            Languages = new Dictionary<AvailableLanguages, IObservable<string>>
-                {
-                    [AvailableLanguages.en_US]
-                        = Strings.Lang_English.ValueObservable,
-                    [AvailableLanguages.ru_RU]
-                        = Strings.Lang_Russian.ValueObservable,
-                }
-                .ToFrozenDictionary();
-
-            CmdExit = ReactiveCommand
-                .CreateFromTask(
-                    async () => await appInteractions
-                        .Exit
-                        .Handle(Unit.Default)
-                );
+            Menu = new MenuSector(1, [
+                new MenuEndpoint(1, _viewSettingsViewModel),
+                new MenuEndpoint(100, _exitViewModel),
+            ]);
         }
 
-        [Reactive]
-        private AvailableLanguages _selectedLanguage;
+        public IMenuSector Menu { get; }
 
-        public IReadOnlyDictionary<AvailableLanguages, IObservable<string>> Languages { get; }
+        private readonly ViewSettingsViewModel _viewSettingsViewModel;
 
-        public ReactiveCommand<Unit, Unit> CmdExit { get; }
+        private readonly ExitViewModel _exitViewModel;
     }
 }

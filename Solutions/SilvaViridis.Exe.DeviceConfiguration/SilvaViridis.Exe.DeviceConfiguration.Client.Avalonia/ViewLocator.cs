@@ -9,6 +9,8 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
         public ViewLocator()
         {
             Register<MainViewModel, MainView, MainWindow>();
+            Register<ViewSettingsViewModel, ViewSettingsView>();
+            Register<ExitViewModel, ExitView>();
         }
     }
 }

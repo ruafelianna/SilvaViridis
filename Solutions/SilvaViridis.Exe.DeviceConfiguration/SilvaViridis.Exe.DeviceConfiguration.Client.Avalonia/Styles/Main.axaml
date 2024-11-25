@@ -12,24 +12,23 @@
     <Setter Property="Padding" Value="5"/>
   </Style>
 
+  <Style Selector="ComboBox">
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+
   <Style Selector="ic|SymbolIcon">
     <Setter Property="Padding" Value="5"/>
   </Style>
 
-  <Style Selector="StackPanel">
+  <Style Selector="DockPanel">
     <Style Selector="^.menu-settings">
       <Setter Property="Margin" Value="5"/>
+      <Setter Property="LastChildFill" Value="False"/>
     </Style>
   </Style>
 
   <Style Selector="Button">
     <Setter Property="Cursor" Value="Hand"/>
-
-    <Style Selector="^.menu-item">
-      <Setter Property="HorizontalAlignment" Value="Stretch"/>
-      <Setter Property="HorizontalContentAlignment" Value="Center"/>
-      <Setter Property="Padding" Value="10"/>
-    </Style>
   </Style>
 
   <Style Selector="ctrl|SimpleExpander">

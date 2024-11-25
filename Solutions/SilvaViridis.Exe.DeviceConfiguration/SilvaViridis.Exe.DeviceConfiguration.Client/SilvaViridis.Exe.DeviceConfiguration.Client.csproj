@@ -5,6 +5,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SilvaViridis.Common.Localization\SilvaViridis.Common.Localization.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Components.Menu\SilvaViridis.Components.Menu.csproj" />
     <ProjectReference Include="..\SilvaViridis.Components\SilvaViridis.Components.csproj" />
   </ItemGroup>
 </Project>

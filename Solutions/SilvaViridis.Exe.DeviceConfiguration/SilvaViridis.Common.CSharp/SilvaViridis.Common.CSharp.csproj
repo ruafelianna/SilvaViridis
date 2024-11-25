@@ -1,3 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(RootFolder)Standard.props" />
+  <ItemGroup>
+    <PackageReference Include="SilvaViridis.Common.Generators.Enums" OutputItemType="Analyzer" PrivateAssets="all" ReferenceOutputAssembly="False" />
+  </ItemGroup>
 </Project>

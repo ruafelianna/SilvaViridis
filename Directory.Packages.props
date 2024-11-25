@@ -16,6 +16,7 @@
     <PackageVersion Include="SilvaViridis.Common.CSharp.Consts" Version="1.0.0-alpha0003" />
     <PackageVersion Include="SilvaViridis.Common.CSharp.Consts.Generators" Version="1.0.0-alpha0001" />
     <PackageVersion Include="SilvaViridis.Common.Generators" Version="1.0.0-alpha0008" />
+    <PackageVersion Include="SilvaViridis.Common.Generators.Enums" Version="1.0.0-alpha" />
     <PackageVersion Include="SilvaViridis.Common.Localization.Generators" Version="1.0.0-alpha0019" />
     <PackageVersion Include="SilvaViridis.Common.Text" Version="1.0.0-alpha" />
   </ItemGroup>

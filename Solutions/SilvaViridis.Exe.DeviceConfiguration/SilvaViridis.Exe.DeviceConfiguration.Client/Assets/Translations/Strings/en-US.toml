@@ -1,7 +1,32 @@
+# Errors
 App_Error_Fatal = 'A critical error has occured. The application will be closed.'
+
+# Dialogs
 Dialog_Details = 'Details'
 Dialog_Error = 'Error'
 Dialog_Ok = 'Ok'
+
+# Languages
 Lang_English = 'English'
 Lang_Russian = 'Русский'
+
+# Menu
+Menu_Batches = 'Device Batches'
+Menu_Configurations = 'Configurations'
+Menu_Devices = 'Devices'
+Menu_Pollings = 'Device Pollings'
+Menu_Reports = 'Reports'
+Menu_Scripts = 'Scripts'
 Menu_Exit = 'Exit'
+Menu_Create = 'New'
+Menu_List = 'List'
+
+# Interface
+Cmd_Create = 'Create'
+Cmd_Save = 'Save'
+Cmd_Reset = 'Reset'
+Cmd_Cancel = 'Cancel'
+
+# Batch
+Batch_Create_Header = 'Create a New Batch of Devices'
+Batch_Create_Name = 'Batch Name'

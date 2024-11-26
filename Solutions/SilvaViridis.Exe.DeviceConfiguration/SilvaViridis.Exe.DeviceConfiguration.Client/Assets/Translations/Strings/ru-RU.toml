@@ -1,5 +1,28 @@
+# Errors
 App_Error_Fatal = 'Возникла критическая ошибка. Приложение будет закрыто.'
+
+# Dialogs
 Dialog_Details = 'Подробности'
 Dialog_Error = 'Ошибка'
 Dialog_Ok = 'Ок'
+
+# Menu
+Menu_Batches = 'Партии устройств'
+Menu_Configurations = 'Конфигурации'
+Menu_Devices = 'Устройства'
+Menu_Pollings = 'Опросы устройств'
+Menu_Reports = 'Отчёты'
+Menu_Scripts = 'Сценарии'
 Menu_Exit = 'Выход'
+Menu_Create = 'Создать'
+Menu_List = 'Список'
+
+# Interface
+Cmd_Create = 'Создать'
+Cmd_Save = 'Сохранить'
+Cmd_Reset = 'Очистить'
+Cmd_Cancel = 'Отмена'
+
+# Batch
+Batch_Create_Header = 'Создание новой партии устройств'
+Batch_Create_Name = 'Имя партии'

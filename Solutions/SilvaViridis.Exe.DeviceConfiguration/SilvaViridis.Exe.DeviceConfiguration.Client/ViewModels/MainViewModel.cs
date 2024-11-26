@@ -4,6 +4,7 @@ using SilvaViridis.Components.Menu;
 using SilvaViridis.Components.Menu.Abstractions;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Interactions;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces;
 using System.Reactive;
 using System.Reactive.Linq;
 
@@ -34,7 +35,10 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
                 new HeadedMenuSector(20, Strings.Menu_Batches.ValueObservable, [
                     new MenuEndpoint(1, new OneActionViewModel(
                         Strings.Menu_Create.ValueObservable,
-                        doNothing
+                        () => Content = new CreateBatchViewModel(
+                            async () => Content = null,
+                            async () => Content = null
+                        )
                     )),
                     new MenuEndpoint(2, new OneActionViewModel(
                         Strings.Menu_List.ValueObservable,

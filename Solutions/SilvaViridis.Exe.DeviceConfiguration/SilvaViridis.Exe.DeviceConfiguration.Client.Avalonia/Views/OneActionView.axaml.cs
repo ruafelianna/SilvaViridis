@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views;
 
-public partial class ExitView : UserControl
+public partial class OneActionView : UserControl
 {
-    public ExitView()
+    public OneActionView()
     {
         InitializeComponent();
     }

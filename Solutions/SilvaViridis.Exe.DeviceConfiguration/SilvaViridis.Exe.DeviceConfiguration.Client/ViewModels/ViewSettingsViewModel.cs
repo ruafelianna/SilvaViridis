@@ -15,7 +15,7 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
     {
         public ViewSettingsViewModel(AppInteractions appInteractions)
         {
-            _selectedLanguage = AvailableLanguages.en_US;
+            _selectedLanguage = AvailableLanguages.ru_RU;
 
             this
                 .WhenAnyValue(vm => vm.SelectedLanguage)

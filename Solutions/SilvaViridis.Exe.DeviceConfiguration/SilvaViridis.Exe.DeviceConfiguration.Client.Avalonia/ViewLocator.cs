@@ -12,8 +12,8 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
         {
             Register<MainViewModel, MainView, MainWindow>();
             Register<ViewSettingsViewModel, ViewSettingsView>();
-            Register<ExitViewModel, ExitView>();
             Register<DialogErrorViewModel, DialogErrorView>();
+            Register<OneActionViewModel, OneActionView>();
         }
     }
 }

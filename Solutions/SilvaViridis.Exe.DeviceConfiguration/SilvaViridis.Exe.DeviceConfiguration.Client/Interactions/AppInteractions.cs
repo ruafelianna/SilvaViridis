@@ -1,4 +1,5 @@
 using ReactiveUI;
+using System;
 using System.Reactive;
 
 namespace SilvaViridis.Exe.DeviceConfiguration.Client.Interactions
@@ -7,9 +8,11 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Interactions
     {
         public AppInteractions()
         {
-            Exit = new();
+            Exit = new(RxApp.MainThreadScheduler);
             ChangeLanguage = new();
             ChangeTheme = new();
+            FatalException = new(RxApp.MainThreadScheduler);
+            ToggleDebug = new();
         }
 
         public Interaction<Unit, Unit> Exit { get; }
@@ -17,5 +20,9 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Interactions
         public Interaction<AvailableLanguages, Unit> ChangeLanguage { get; }
 
         public Interaction<AvailableThemes, Unit> ChangeTheme { get; }
+
+        public Interaction<Exception, Unit> FatalException { get; }
+
+        public Interaction<Unit, Unit> ToggleDebug { get; }
     }
 }

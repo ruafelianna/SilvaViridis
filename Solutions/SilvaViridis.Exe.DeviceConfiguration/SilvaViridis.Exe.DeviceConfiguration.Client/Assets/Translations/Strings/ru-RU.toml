@@ -1,1 +1,5 @@
+App_Error_Fatal = 'Возникла критическая ошибка. Приложение будет закрыто.'
+Dialog_Details = 'Подробности'
+Dialog_Error = 'Ошибка'
+Dialog_Ok = 'Ок'
 Menu_Exit = 'Выход'

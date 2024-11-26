@@ -1,3 +1,7 @@
+App_Error_Fatal = 'A critical error has occured. The application will be closed.'
+Dialog_Details = 'Details'
+Dialog_Error = 'Error'
+Dialog_Ok = 'Ok'
 Lang_English = 'English'
 Lang_Russian = 'Русский'
 Menu_Exit = 'Exit'

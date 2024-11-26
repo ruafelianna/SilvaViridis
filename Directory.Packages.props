@@ -4,7 +4,7 @@
   </PropertyGroup>
   <PropertyGroup Label="Versions">
     <Version_SilvaViridis>1.0.0-alpha</Version_SilvaViridis>
-    <Version_Avalonia>11.2.0</Version_Avalonia>
+    <Version_Avalonia>11.2.2</Version_Avalonia>
     <Version_LanguageExt>4.4.9</Version_LanguageExt>
     <Version_Microsoft>9.0.0</Version_Microsoft>
     <Version_Microsoft_Analyzer>4.10.0</Version_Microsoft_Analyzer>
@@ -43,6 +43,7 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="$(Version_Microsoft)" />
   </ItemGroup>
   <ItemGroup Label="MvvmDialogsPackages">
+    <PackageVersion Include="HanumanInstitute.MvvmDialogs" Version="$(Version_MvvmDialogs)" />
     <PackageVersion Include="HanumanInstitute.MvvmDialogs.Avalonia" Version="$(Version_MvvmDialogs)" />
     <PackageVersion Include="HanumanInstitute.MvvmDialogs.Avalonia.MessageBox" Version="$(Version_MvvmDialogs)" />
     <PackageVersion Include="HanumanInstitute.MvvmDialogs.Avalonia.DialogHost" Version="$(Version_MvvmDialogs)" />

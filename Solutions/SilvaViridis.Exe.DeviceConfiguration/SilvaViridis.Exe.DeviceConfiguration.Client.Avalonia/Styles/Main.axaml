@@ -12,12 +12,43 @@
     <Setter Property="Padding" Value="5"/>
   </Style>
 
+  <Style Selector="Border">
+    <Style Selector="^.dialog-border">
+      <Setter Property="BorderThickness" Value="2"/>
+      <Setter Property="MaxHeight" Value="400"/>
+      <Setter Property="MaxWidth" Value="600"/>
+      <Setter Property="Padding" Value="10"/>
+      <Setter Property="Background" Value="{DynamicResource SystemRegionColor}"/>
+    </Style>
+
+    <Style Selector="^.border-error">
+      <Setter Property="BorderBrush" Value="{DynamicResource SystemErrorTextColor}"/>
+    </Style>
+  </Style>
+
+  <Style Selector="SelectableTextBlock">
+    <Style Selector="^.dialog-msg">
+      <Setter Property="Margin" Value="5"/>
+      <Setter Property="TextWrapping" Value="Wrap"/>
+      <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+
+    <Style Selector="^^.dialog-details-text">
+      <Setter Property="Margin" Value="5"/>
+      <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+  </Style>
+
   <Style Selector="ComboBox">
     <Setter Property="VerticalAlignment" Value="Center"/>
   </Style>
 
   <Style Selector="ic|SymbolIcon">
     <Setter Property="Padding" Value="5"/>
+
+    <Style Selector="^.symbol-error">
+      <Setter Property="Foreground" Value="{DynamicResource SystemErrorTextColor}"/>
+    </Style>
   </Style>
 
   <Style Selector="DockPanel">
@@ -27,8 +58,30 @@
     </Style>
   </Style>
 
+  <Style Selector="StackPanel">
+    <Style Selector="^.dialog-header">
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="Margin" Value="5"/>
+    </Style>
+  </Style>
+
+  <Style Selector="Expander">
+    <Style Selector="^.dialog-details">
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+      <Setter Property="Margin" Value="5"/>
+    </Style>
+  </Style>
+
   <Style Selector="Button">
     <Setter Property="Cursor" Value="Hand"/>
+
+    <Style Selector="^.dialog-btn">
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="HorizontalContentAlignment" Value="Center"/>
+      <Setter Property="Padding" Value="10"/>
+      <Setter Property="MinWidth" Value="100"/>
+      <Setter Property="Margin" Value="5"/>
+    </Style>
   </Style>
 
   <Style Selector="ctrl|SimpleExpander">

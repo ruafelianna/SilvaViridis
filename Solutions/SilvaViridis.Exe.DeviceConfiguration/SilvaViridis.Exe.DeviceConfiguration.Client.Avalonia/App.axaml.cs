@@ -1,15 +1,21 @@
 using Avalonia;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using Avalonia.Styling;
+using HanumanInstitute.MvvmDialogs;
 using HanumanInstitute.MvvmDialogs.Avalonia;
 using HanumanInstitute.MvvmDialogs.Avalonia.MessageBox;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
+using SilvaViridis.Components;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Interactions;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Dialogs;
 using System;
 using System.Reactive;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 
 namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
 {
@@ -18,6 +24,8 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
+
+            OverrideDynamicResources();
         }
 
         public override void OnFrameworkInitializationCompleted()
@@ -33,6 +41,8 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
                         options.UseUtcTimestamp = false;
                     })
                 );
+
+            var appLogger = loggerFactory.CreateLogger<App>();
 
             var dialogService = new DialogService(
                 new DialogManager(
@@ -50,6 +60,37 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
 
             var vm = new MainViewModel(appInteractions);
 
+            InitAppInteractions(
+                appInteractions,
+                dialogService,
+                vm,
+                appLogger
+            );
+
+            _isDebug = true;
+
+            appInteractions.ChangeLanguage
+                .Handle(AvailableLanguages.ru_RU)
+                .Wait();
+
+            dialogService.Show(null, vm);
+        }
+
+        private bool _isDebug;
+
+        private void OverrideDynamicResources()
+        {
+            Resources["SystemErrorTextColor"]
+                = new SolidColorBrush(Colors.Salmon);
+        }
+
+        private void InitAppInteractions(
+            AppInteractions appInteractions,
+            DialogService dialogService,
+            ViewModelBase vm,
+            ILogger appLogger
+        )
+        {
             appInteractions.Exit
                 .RegisterHandler(ctx => {
                     dialogService.Close(vm);
@@ -82,7 +123,44 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
                     ctx.SetOutput(Unit.Default);
                 });
 
-            dialogService.Show(null, vm);
+            appInteractions.FatalException
+                .RegisterHandler(async ctx =>
+                {
+                    var msg = Strings.App_Error_Fatal.Value;
+
+                    appLogger.LogCritical(ctx.Input, "{msg}", msg);
+
+                    var ex = _isDebug ? ctx.Input : null;
+
+                    await dialogService
+                        .ShowDialogHostAsync(
+                            vm,
+                            new()
+                            {
+                                Content = new DialogErrorViewModel(
+                                    Strings.Dialog_Error.Value!,
+                                    msg!,
+                                    ex
+                                ),
+                                OverlayBackground = new SolidColorBrush(
+                                    Colors.Black,
+                                    0.99
+                                ),
+                            }
+                        );
+
+                    await appInteractions.Exit
+                        .Handle(Unit.Default);
+
+                    ctx.SetOutput(Unit.Default);
+                });
+
+            appInteractions.ToggleDebug
+                .RegisterHandler(ctx => {
+                    _isDebug = !_isDebug;
+
+                    ctx.SetOutput(Unit.Default);
+                });
         }
     }
 }

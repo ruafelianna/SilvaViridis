@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Dialogs.DialogErrorView"
+             x:DataType="vm:DialogErrorViewModel"
+             xmlns:vm="using:SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Dialogs"
+             xmlns:tr="using:SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations"
+             xmlns:ic="using:FluentIcons.Avalonia">
+  <Border Classes="dialog-border border-error">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+      <StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    Classes="dialog-header">
+          <ic:SymbolIcon Symbol="ErrorCircle"
+                         IconVariant="Regular"
+                         Classes="symbol-error"/>
+          <TextBlock Text="{Binding Header}" />
+        </StackPanel>
+
+        <SelectableTextBlock Text="{Binding Message}"
+                             Classes="dialog-msg" />
+
+        <Expander IsVisible="{Binding Exception,
+                              Converter={x:Static ObjectConverters.IsNotNull}}"
+                  Header="{Binding Value,
+                           Source={x:Static tr:Strings.Dialog_Details}}"
+                  Classes="dialog-details">
+          <SelectableTextBlock Text="{Binding Exception}"
+                               Classes="dialog-details-text"/>
+        </Expander>
+
+        <Button Content="{Binding Value,
+                          Source={x:Static tr:Strings.Dialog_Ok}}"
+                Command="{Binding CmdClose}"
+                Classes="dialog-btn"/>
+      </StackPanel>
+    </ScrollViewer>
+  </Border>
+</UserControl>

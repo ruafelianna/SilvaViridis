@@ -1,8 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(RootFolder)Standard.props" />
   <ItemGroup>
+    <AdditionalFiles Include="**\*.toml" />
+    <EmbeddedResource Include="**\*.toml" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="ReactiveUI" />
     <PackageReference Include="ReactiveUI.SourceGenerators" />
+    <PackageReference Include="ReactiveUI.Validation" />
     <PackageReference Include="SilvaViridis.Components.Generators" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SilvaViridis.Common.Localization\SilvaViridis.Common.Localization.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Common.Text\SilvaViridis.Common.Text.csproj" />
   </ItemGroup>
 </Project>

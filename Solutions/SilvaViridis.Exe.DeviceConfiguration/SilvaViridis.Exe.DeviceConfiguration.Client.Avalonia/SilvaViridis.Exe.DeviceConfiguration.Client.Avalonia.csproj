@@ -17,4 +17,9 @@
     <ProjectReference Include="..\SilvaViridis.Components.Menu.Avalonia\SilvaViridis.Components.Menu.Avalonia.csproj" />
     <ProjectReference Include="..\SilvaViridis.Exe.DeviceConfiguration.Client\SilvaViridis.Exe.DeviceConfiguration.Client.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\SerialPortView.axaml.cs">
+      <DependentUpon>SerialPortView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

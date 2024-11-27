@@ -113,11 +113,16 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
 
             #region Devices
 
-            var devices_Connections = new MenuEndpoint(
+            MenuEndpoint devices_Connections = null!;
+
+            devices_Connections = new MenuEndpoint(
                 1,
                 new OneActionViewModel(
                     Strings.Menu_Connections,
-                    doNothing
+                    () => ShowContent(
+                        new DeviceConnectionsViewModel(),
+                        devices_Connections
+                    )
                 )
             );
 

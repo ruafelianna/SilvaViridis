@@ -7,6 +7,7 @@ using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Dialogs;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Models;
 
 namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
 {
@@ -20,6 +21,9 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
             Register<OneActionViewModel, OneActionView>();
             Register<CreateBatchViewModel, CreateBatchView>();
             Register<BatchListViewModelProxy, BatchListView>();
+            Register<DeviceConnectionsViewModel, DeviceConnectionsView>();
+            Register<SerialPortViewModel, SerialPortView>();
+            Register<ModbusRTUViewModel, ModbusRTUView>();
         }
 
         public override Control Build(object? data)

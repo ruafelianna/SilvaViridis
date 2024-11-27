@@ -1,9 +1,11 @@
 using DynamicData;
+using ReactiveUI;
 using SilvaViridis.Components.Generators;
 using SilvaViridis.Components.Menu.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Reactive.Linq;
 
 namespace SilvaViridis.Components.Menu
 {
@@ -43,12 +45,14 @@ namespace SilvaViridis.Components.Menu
             IEnumerable<IMenuItem>? items
         )
         {
-            InitCache(
-                out menuItemsCache,
-                out menuItems,
-                menuItem => menuItem.Guid,
-                sortBy: menuItem => menuItem.SortKey
-            );
+            menuItemsCache = new(menuItem => menuItem.Guid);
+
+            menuItemsCache
+                .Connect()
+                .SortBy(menuItem => menuItem.SortKey)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Bind(out menuItems)
+                .Subscribe();
 
             if (items is not null)
             {

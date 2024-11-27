@@ -62,7 +62,7 @@
   </ItemGroup>
   <ItemGroup Label="OtherPackages">
     <PackageVersion Include="BaGet.Protocol" Version="0.4.0-preview2" />
-    <PackageVersion Include="FluentIcons.Avalonia" Version="1.1.265" />
+    <PackageVersion Include="FluentIcons.Avalonia" Version="1.1.266" />
     <PackageVersion Include="IndexRange" Version="1.0.3" />
     <PackageVersion Include="IsExternalInit" Version="1.0.3" />
     <PackageVersion Include="Nullable" Version="1.3.1" />

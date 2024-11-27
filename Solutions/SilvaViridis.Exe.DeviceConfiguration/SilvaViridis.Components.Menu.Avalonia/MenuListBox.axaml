@@ -11,24 +11,28 @@
       <Expander ExpandDirection="Down"
                 Header="{Binding Header}"
                 Classes="menu-item"
-                IsExpanded="{Binding $parent[ListBoxItem].IsSelected}">
+                IsExpanded="{Binding $parent[ListBoxItem].IsSelected}"
+                IsEnabled="{Binding IsEnabled}">
         <local:MenuListBox ItemsSource="{Binding MenuItems}"/>
       </Expander>
     </DataTemplate>
 
     <DataTemplate x:DataType="cmpa:IMenuSector">
       <local:MenuListBox ItemsSource="{Binding MenuItems}"
-                         Classes="menu-item"/>
+                         Classes="menu-item"
+                         IsEnabled="{Binding IsEnabled}"/>
     </DataTemplate>
 
     <DataTemplate x:DataType="cmpa:IMenuEndpoint">
       <ContentControl Content="{Binding Content}"
-                      Classes="menu-item"/>
+                      Classes="menu-item"
+                      IsEnabled="{Binding IsEnabled}"/>
     </DataTemplate>
 
     <DataTemplate x:DataType="cmpa:IMenuItem">
       <TextBlock Text = "{Binding Guid}"
-                 Classes="menu-item"/>
+                 Classes="menu-item"
+                 IsEnabled="{Binding IsEnabled}"/>
     </DataTemplate>
   </ListBox.DataTemplates>
 </ListBox>

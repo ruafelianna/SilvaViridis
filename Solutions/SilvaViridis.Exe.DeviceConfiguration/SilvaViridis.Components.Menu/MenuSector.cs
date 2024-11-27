@@ -49,6 +49,8 @@ namespace SilvaViridis.Components.Menu
 
             menuItemsCache
                 .Connect()
+                .AutoRefresh(menuItem => menuItem.IsVisible)
+                .Filter(menuItem => menuItem.IsVisible)
                 .SortBy(menuItem => menuItem.SortKey)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out menuItems)

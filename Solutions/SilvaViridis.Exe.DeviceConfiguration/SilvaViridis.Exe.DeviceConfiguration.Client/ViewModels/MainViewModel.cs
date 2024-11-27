@@ -16,69 +16,203 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
         {
             _viewSettingsViewModel = new(appInteractions);
 
-            static void doNothing() { }
-
-            Menu = new MenuSector(1, [
-                new MenuEndpoint(1, _viewSettingsViewModel),
-
-                new HeadedMenuSector(10, Strings.Menu_Configurations.ValueObservable, [
-                    new MenuEndpoint(1, new OneActionViewModel(
-                        Strings.Menu_Create.ValueObservable,
-                        doNothing
-                    )),
-                    new MenuEndpoint(2, new OneActionViewModel(
-                        Strings.Menu_List.ValueObservable,
-                        doNothing
-                    )),
-                ]),
-
-                new HeadedMenuSector(20, Strings.Menu_Batches.ValueObservable, [
-                    new MenuEndpoint(1, new OneActionViewModel(
-                        Strings.Menu_Create.ValueObservable,
-                        () => Content = new CreateBatchViewModel(
-                            async () => Content = null,
-                            async () => Content = null
-                        )
-                    )),
-                    new MenuEndpoint(2, new OneActionViewModel(
-                        Strings.Menu_List.ValueObservable,
-                        () => Content = new BatchListViewModel()
-                    )),
-                ]),
-
-                new MenuEndpoint(30, new OneActionViewModel(
-                    Strings.Menu_Devices.ValueObservable,
-                    doNothing
-                )),
-
-                new MenuEndpoint(40, new OneActionViewModel(
-                    Strings.Menu_Pollings.ValueObservable,
-                    doNothing
-                )),
-
-                new MenuEndpoint(50, new OneActionViewModel(
-                    Strings.Menu_Scripts.ValueObservable,
-                    doNothing
-                )),
-
-                new MenuEndpoint(60, new OneActionViewModel(
-                    Strings.Menu_Reports.ValueObservable,
-                    doNothing
-                )),
-
-                new MenuEndpoint(100, new OneActionViewModel(
-                    Strings.Menu_Exit.ValueObservable,
-                    async () => await appInteractions.Exit
-                        .Handle(Unit.Default)
-                )),
-            ]);
+            Menu = CreateMenu(appInteractions);
         }
 
         public IMenuSector Menu { get; }
 
-        [Reactive]
+        [Reactive(SetModifier = AccessModifier.Private)]
         private ViewModelBase? _content;
 
         private readonly ViewSettingsViewModel _viewSettingsViewModel;
+
+        private IMenuItem? _disabledMenu;
+
+        private MenuSector CreateMenu(AppInteractions appInteractions)
+        {
+            static void doNothing() { }
+
+            #region Header
+
+            var viewSettings = new MenuEndpoint(
+                1,
+                _viewSettingsViewModel
+            );
+
+            #endregion
+
+            #region Configuration
+
+            var configuration_Create = new MenuEndpoint(
+                1,
+                new OneActionViewModel(
+                    Strings.Menu_Create,
+                    doNothing
+                )
+            );
+
+            var configuration_List = new MenuEndpoint(
+                1,
+                new OneActionViewModel(
+                    Strings.Menu_List,
+                    doNothing
+                )
+            );
+
+            var configuration = new HeadedMenuSector(
+                10,
+                Strings.Menu_Configurations,
+                [
+                    configuration_Create,
+                    configuration_List,
+                ]
+            );
+
+            #endregion
+
+            #region Batches
+
+            MenuEndpoint batches_Create = null!;
+
+            batches_Create = new MenuEndpoint(
+                1,
+                new OneActionViewModel(
+                    Strings.Menu_Create,
+                    () => ShowContent(
+                        new CreateBatchViewModel(
+                            async () => HideContent(),
+                            async () => HideContent()
+                        ),
+                        batches_Create
+                    )
+                )
+            );
+
+            MenuEndpoint batches_List = null!;
+
+            batches_List = new MenuEndpoint(
+                2,
+                new OneActionViewModel(
+                    Strings.Menu_List,
+                    () => ShowContent(
+                        new BatchListViewModel(),
+                        batches_List
+                    )
+                )
+            );
+
+            var batches = new HeadedMenuSector(
+                20, Strings.Menu_Batches,
+                [
+                    batches_Create,
+                    batches_List,
+                ]
+            );
+
+            #endregion
+
+            #region Devices
+
+            var devices_Connections = new MenuEndpoint(
+                1,
+                new OneActionViewModel(
+                    Strings.Menu_Connections,
+                    doNothing
+                )
+            );
+
+            var devices_Polling = new MenuEndpoint(
+                2,
+                new OneActionViewModel(
+                    Strings.Menu_Polling,
+                    doNothing
+                )
+            );
+
+            var devices = new HeadedMenuSector(
+                30,
+                Strings.Menu_Devices,
+                [
+                    devices_Connections,
+                    devices_Polling,
+                ]
+            );
+
+            #endregion
+
+            #region Scripts
+
+            var scripts = new MenuEndpoint(
+                40,
+                new OneActionViewModel(
+                    Strings.Menu_Scripts,
+                    doNothing
+                )
+            );
+
+            #endregion
+
+            #region Reports
+
+            var reports = new MenuEndpoint(
+                50,
+                new OneActionViewModel(
+                    Strings.Menu_Reports,
+                    doNothing
+                )
+            );
+
+            #endregion
+
+            #region Footer
+
+            var exit = new MenuEndpoint(
+                1000,
+                new OneActionViewModel(
+                    Strings.Menu_Exit,
+                    async () => await appInteractions.Exit
+                        .Handle(Unit.Default)
+                )
+            );
+
+            #endregion
+
+            return new MenuSector(
+                1,
+                [
+                    viewSettings,
+                    configuration,
+                    batches,
+                    devices,
+                    scripts,
+                    reports,
+                    exit,
+                ]
+            );
+        }
+
+        private void ShowContent(ViewModelBase vm, IMenuItem menu)
+        {
+            if (_disabledMenu is not null)
+            {
+                _disabledMenu.IsEnabled = true;
+            }
+
+            _disabledMenu = menu;
+            _disabledMenu.IsEnabled = false;
+
+            Content = vm;
+        }
+
+        private void HideContent()
+        {
+            Content = null;
+
+            if (_disabledMenu is not null)
+            {
+                _disabledMenu.IsEnabled = true;
+                _disabledMenu = null;
+            }
+        }
     }
 }

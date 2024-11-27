@@ -22,6 +22,8 @@
 
     <dh:DialogHostStyles />
 
+    <StyleInclude Source="avares://Avalonia.Controls.TreeDataGrid/Themes/Fluent.axaml"/>
+
     <StyleInclude Source="avares://SilvaViridis.Components.Avalonia/Styles/SimpleExpander.axaml"/>
     <StyleInclude Source="avares://SilvaViridis.Components.Menu.Avalonia/Styles.axaml"/>
 

@@ -30,3 +30,10 @@ Cmd_Cancel = 'Cancel'
 # Batch
 Batch_Create_Header = 'Create a New Batch of Devices'
 Batch_Create_Name = 'Batch Name'
+
+# Batches List
+BatchesList_Header = 'Device Batches'
+BatchesList_SearchBtn = 'Search'
+BatchesList_Table_Id = 'Id'
+BatchesList_Table_Name = 'Name'
+BatchesList_Table_Created = 'Created'

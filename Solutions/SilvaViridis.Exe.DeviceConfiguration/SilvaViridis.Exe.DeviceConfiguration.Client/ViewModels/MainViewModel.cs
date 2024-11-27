@@ -42,7 +42,7 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
                     )),
                     new MenuEndpoint(2, new OneActionViewModel(
                         Strings.Menu_List.ValueObservable,
-                        doNothing
+                        () => Content = new BatchListViewModel()
                     )),
                 ]),
 

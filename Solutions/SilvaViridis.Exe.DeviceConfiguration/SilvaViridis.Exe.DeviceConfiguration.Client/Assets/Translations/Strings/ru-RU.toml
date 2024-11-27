@@ -26,3 +26,10 @@ Cmd_Cancel = 'Отмена'
 # Batch
 Batch_Create_Header = 'Создание новой партии устройств'
 Batch_Create_Name = 'Имя партии'
+
+# Batches List
+BatchesList_Header = 'Партии устройств'
+BatchesList_SearchBtn = 'Поиск'
+BatchesList_Table_Id = 'ID'
+BatchesList_Table_Name = 'Название'
+BatchesList_Table_Created = 'Создана'

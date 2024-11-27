@@ -7,6 +7,20 @@
     <Setter Property="Cursor" Value="Hand"/>
   </Style>
 
+  <Style Selector="ScrollViewer">
+    <Style Selector="^.form-table">
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+  </Style>
+
+  <Style Selector="TreeDataGrid">
+    <Setter Property="Margin" Value="10"/>
+  </Style>
+
+  <Style Selector="TreeDataGridCell">
+    <Setter Property="Padding" Value="5"/>
+  </Style>
+
   <Style Selector="TextBlock">
     <Setter Property="VerticalAlignment" Value="Center"/>
     <Setter Property="Padding" Value="5"/>
@@ -33,6 +47,10 @@
     <Setter Property="VerticalContentAlignment" Value="Center"/>
 
     <Style Selector="^.form-control">
+      <Setter Property="Width" Value="300"/>
+    </Style>
+
+    <Style Selector="^.form-search">
       <Setter Property="Width" Value="300"/>
     </Style>
   </Style>
@@ -90,6 +108,10 @@
     </Style>
 
     <Style Selector="^.form-btn-group">
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style Selector="^.form-search-group">
       <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
   </Style>

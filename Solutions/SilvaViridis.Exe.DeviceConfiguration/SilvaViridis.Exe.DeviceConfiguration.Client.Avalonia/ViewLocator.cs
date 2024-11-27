@@ -1,4 +1,6 @@
+using Avalonia.Controls;
 using HanumanInstitute.MvvmDialogs.Avalonia;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.ViewModels.Interfaces;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Dialogs;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces;
@@ -17,6 +19,30 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
             Register<DialogErrorViewModel, DialogErrorView>();
             Register<OneActionViewModel, OneActionView>();
             Register<CreateBatchViewModel, CreateBatchView>();
+            Register<BatchListViewModelProxy, BatchListView>();
+        }
+
+        public override Control Build(object? data)
+        {
+            bool setDataContext = true;
+
+            if (data is BatchListViewModel blvm)
+            {
+                data = new BatchListViewModelProxy(blvm);
+            }
+            else
+            {
+                setDataContext = false;
+            }
+
+            var result = base.Build(data);
+
+            if (setDataContext)
+            {
+                result.DataContext = data;
+            }
+
+            return result;
         }
     }
 }

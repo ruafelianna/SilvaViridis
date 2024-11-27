@@ -1,5 +1,6 @@
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using SilvaViridis.Common.Localization.Abstractions;
 using SilvaViridis.Components;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Interactions;
@@ -27,12 +28,12 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
                 .Concat()
                 .Subscribe();
 
-            Languages = new Dictionary<AvailableLanguages, IObservable<string>>
+            Languages = new Dictionary<AvailableLanguages, ITranslationUnit>
                 {
                     [AvailableLanguages.en_US]
-                        = Strings.Lang_English.ValueObservable,
+                        = Strings.Lang_English,
                     [AvailableLanguages.ru_RU]
-                        = Strings.Lang_Russian.ValueObservable,
+                        = Strings.Lang_Russian,
                 }
                 .ToFrozenDictionary();
 
@@ -47,7 +48,7 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
         [Reactive]
         private AvailableLanguages _selectedLanguage;
 
-        public IReadOnlyDictionary<AvailableLanguages, IObservable<string>> Languages { get; }
+        public IReadOnlyDictionary<AvailableLanguages, ITranslationUnit> Languages { get; }
 
         public ReactiveCommand<AvailableThemes, Unit> CmdChangeTheme { get; }
     }

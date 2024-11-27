@@ -14,11 +14,19 @@ namespace SilvaViridis.Components.Menu
         {
             Guid = guid;
             SortKey = sortKey;
+            IsVisible = true;
+            IsEnabled = true;
         }
 
         public string Guid { get; }
 
         [Reactive]
         private int _sortKey;
+
+        [Reactive]
+        private bool _isVisible;
+
+        [Reactive]
+        private bool _isEnabled;
     }
 }

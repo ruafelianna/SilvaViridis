@@ -2,6 +2,7 @@ using DynamicData;
 using ReactiveUI;
 using SilvaViridis.Components;
 using SilvaViridis.Components.Generators;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices.Enums;
 using System;
 using System.Collections.ObjectModel;
 using System.Reactive.Linq;

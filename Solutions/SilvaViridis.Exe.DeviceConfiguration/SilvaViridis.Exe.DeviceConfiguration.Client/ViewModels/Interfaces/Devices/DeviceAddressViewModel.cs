@@ -1,7 +1,6 @@
 using ReactiveUI.SourceGenerators;
 using SilvaViridis.Components;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices.Abstractions;
-using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices.Enums;
 
 namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices
 {
@@ -9,18 +8,14 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devi
     {
         public DeviceAddressViewModel(
             DevicePortViewModel parent,
-            AvailableProtocols protocol,
             IProtocolInfo protocolInfo
         )
         {
             Parent = parent;
-            Protocol = protocol;
             ProtocolInfo = protocolInfo;
         }
 
         public DevicePortViewModel Parent { get; }
-
-        public AvailableProtocols Protocol { get; }
 
         public IProtocolInfo ProtocolInfo { get; }
 

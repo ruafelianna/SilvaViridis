@@ -35,33 +35,62 @@
         <ItemsControl.ItemTemplate>
           <DataTemplate>
             <Border Classes="border-devport">
-              <Grid RowDefinitions="Auto,Auto,*,Auto"
-                    ColumnDefinitions="Auto,Auto,*">
+              <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto"
+                    ColumnDefinitions="Auto">
                 <TextBlock Text="{Binding Device.Name}"
-                           Grid.Row="0"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="3"/>
+                           Grid.Row="0" />
 
-                <CheckBox IsChecked="{Binding IsChosen}"
-                          Grid.Row="1"
-                          Grid.Column="0"/>
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal">
+                  <CheckBox IsChecked="{Binding IsChosen}" />
 
-                <Border Grid.Row="1"
-                        Grid.Column="1"
-                        Classes="border-devport-online"
-                        Classes.online="{Binding IsOnline}"
-                        Classes.offline="{Binding !IsOnline}"/>
+                  <Border Classes="border-devport-online"
+                          Classes.online="{Binding IsOnline}"
+                          Classes.offline="{Binding !IsOnline}"/>
 
-                <TextBlock Text="{Binding Name}"
-                           Grid.Row="1"
-                           Grid.Column="2"/>
+                  <TextBlock Text="{Binding Name}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="2">
+                  <TextBlock Text="{Binding Connection}" />
+                  <TextBlock Text="{Binding Protocol}" />
+                </StackPanel>
 
                 <ContentControl Content="{Binding ConnectionInfo}"
-                                Grid.Row="2"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="3"/>
+                                Grid.Row="3" />
 
-                <Button Grid.Row="3">
+                <Rectangle Grid.Row="4"
+                           Classes="rect-line"/>
+
+                <ItemsControl ItemsSource="{Binding Addresses}"
+                              Grid.Row="5">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <UniformGrid Columns="5"/>
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <ToggleButton IsChecked="{Binding IsChosen}"
+                                    Classes.chosen="{Binding IsChosen}"
+                                    Classes.notchosen="{Binding !IsChosen}"
+                                    Classes="tbtn-devaddr">
+                        <StackPanel>
+                          <StackPanel Orientation="Horizontal">
+                            <Border Classes.online="{Binding IsOnline}"
+                                    Classes.offline="{Binding !IsOnline}"
+                                    Classes="border-devaddr-online" />
+                            <ContentControl Content="{Binding ProtocolInfo}" />
+                          </StackPanel>
+                        </StackPanel>
+                      </ToggleButton>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Button Grid.Row="6">
                   <ic:SymbolIcon Symbol="DocumentAdd"
                                  IconVariant="Regular"
                                  Classes="symbol-add"/>

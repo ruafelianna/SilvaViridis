@@ -3,8 +3,87 @@
         xmlns:ctrl="using:SilvaViridis.Components.Avalonia.Controls"
         xmlns:ic="using:FluentIcons.Avalonia">
 
+  <Styles.Resources>
+    <ResourceDictionary>
+      <SolidColorBrush x:Key='chk-checked.GlyphColor'>Black</SolidColorBrush>
+      <SolidColorBrush x:Key='chk-checked-chosen.Background-dark'>DodgerBlue</SolidColorBrush>
+      <SolidColorBrush x:Key='chk-checked-chosen.Background-light'>DeepSkyBlue</SolidColorBrush>
+      <SolidColorBrush x:Key='chk-checked-chosen-pointover.Background'>SkyBlue</SolidColorBrush>
+      <SolidColorBrush x:Key='chk-unchecked-notchosen.Background'>Gray</SolidColorBrush>
+      <SolidColorBrush x:Key='chk-unchecked-notchosen-pointover.Background'>LightGray</SolidColorBrush>
+
+      <SolidColorBrush x:Key='online.Background'>LimeGreen</SolidColorBrush>
+      <SolidColorBrush x:Key='online.BorderBrush'>Green</SolidColorBrush>
+      <Thickness x:Key='online.BorderThickness'>1</Thickness>
+
+      <SolidColorBrush x:Key='offline.Background'>IndianRed</SolidColorBrush>
+      <SolidColorBrush x:Key='offline.BorderBrush'>FireBrick</SolidColorBrush>
+      <Thickness x:Key='offline.BorderThickness'>1</Thickness>
+
+      <SolidColorBrush x:Key='AppBorderBrush'
+                       Color="{DynamicResource SystemBaseMediumLowColor}"/>
+
+      <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key='Light'>
+          <SolidColorBrush x:Key='SymbolAddColor'>Green</SolidColorBrush>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key='Dark'>
+          <SolidColorBrush x:Key='SymbolAddColor'>LimeGreen</SolidColorBrush>
+        </ResourceDictionary>
+      </ResourceDictionary.ThemeDictionaries>
+    </ResourceDictionary>
+  </Styles.Resources>
+
+  <Style Selector="CheckBox">
+    <Style Selector="^ /template/ Border#NormalRectangle">
+      <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+
+    <Style Selector="^:checked /template/ Path#CheckGlyph">
+      <Setter Property="Fill" Value="{DynamicResource chk-checked.GlyphColor}"/>
+
+      <Style Selector="^.chosen /template/ Border#NormalRectangle">
+        <Setter Property="Background" Value="{DynamicResource chk-checked-chosen.Background-light}"/>
+
+        <Style Selector="^:pointerover /template/ Border#NormalRectangle">
+          <Setter Property="Background" Value="{DynamicResource chk-checked-chosen-pointover.Background}"/>
+        </Style>
+      </Style>
+    </Style>
+
+    <Style Selector="^:unchecked">
+      <Style Selector="^.notchosen /template/ Border#NormalRectangle">
+        <Setter Property="Background" Value="{DynamicResource chk-unchecked-notchosen.Background}"/>
+
+        <Style Selector="^:pointerover /template/ Border#NormalRectangle">
+          <Setter Property="Background" Value="{DynamicResource chk-unchecked-notchosen-pointover.Background}"/>
+        </Style>
+      </Style>
+    </Style>
+  </Style>
+
   <Style Selector="ToggleButton">
     <Setter Property="Cursor" Value="Hand"/>
+
+    <Style Selector="^:checked.chosen /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource chk-checked-chosen.Background-dark}"/>
+    </Style>
+
+    <Style Selector="^:checked:pointerover.chosen /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource chk-checked-chosen-pointover.Background}"/>
+    </Style>
+
+    <Style Selector="^:unchecked.notchosen /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource chk-unchecked-notchosen.Background}"/>
+    </Style>
+
+    <Style Selector="^:unchecked:pointerover.notchosen /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource chk-unchecked-notchosen-pointover.Background}"/>
+    </Style>
+
+    <Style Selector="^.tbtn-devaddr">
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
   </Style>
 
   <Style Selector="ScrollViewer">
@@ -15,6 +94,12 @@
 
   <Style Selector="TreeDataGrid">
     <Setter Property="Margin" Value="10"/>
+  </Style>
+
+  <Style Selector="ItemsControl">
+    <Style Selector="^.form-table-data">
+      <Setter Property="Margin" Value="10"/>
+    </Style>
   </Style>
 
   <Style Selector="TreeDataGridCell">
@@ -67,6 +152,44 @@
     <Style Selector="^.border-error">
       <Setter Property="BorderBrush" Value="{DynamicResource SystemErrorTextColor}"/>
     </Style>
+
+    <Style Selector="^.border-devport">
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}"/>
+      <Setter Property="Margin" Value="10"/>
+      <Setter Property="Padding" Value="10"/>
+    </Style>
+
+    <Style Selector="^.border-devport-online">
+      <Setter Property="Height" Value="35"/>
+      <Setter Property="MinWidth" Value="{Binding $self.Height}"/>
+    </Style>
+
+    <Style Selector="^.border-devaddr-online">
+      <Setter Property="Height" Value="30"/>
+      <Setter Property="MinWidth" Value="{Binding $self.Height}"/>
+    </Style>
+
+    <Style Selector="^.online">
+      <Setter Property="Background" Value="{DynamicResource online.Background}"/>
+      <Setter Property="BorderBrush" Value="{DynamicResource online.BorderBrush}"/>
+      <Setter Property="BorderThickness" Value="{DynamicResource online.BorderThickness}"/>
+    </Style>
+
+    <Style Selector="^.offline">
+      <Setter Property="Background" Value="{DynamicResource offline.Background}"/>
+      <Setter Property="BorderBrush" Value="{DynamicResource offline.BorderBrush}"/>
+      <Setter Property="BorderThickness" Value="{DynamicResource offline.BorderThickness}"/>
+    </Style>
+  </Style>
+
+  <Style Selector="Rectangle">
+    <Style Selector="^.rect-line">
+      <Setter Property="VerticalAlignment" Value="Bottom"/>
+      <Setter Property="Fill" Value="{DynamicResource AppBorderBrush}"/>
+      <Setter Property="Height" Value="3"/>
+      <Setter Property="Margin" Value="0,5,0,5"/>
+    </Style>
   </Style>
 
   <Style Selector="SelectableTextBlock">
@@ -76,7 +199,7 @@
       <Setter Property="TextAlignment" Value="Center"/>
     </Style>
 
-    <Style Selector="^^.dialog-details-text">
+    <Style Selector="^.dialog-details-text">
       <Setter Property="Margin" Value="5"/>
       <Setter Property="TextWrapping" Value="Wrap"/>
     </Style>
@@ -91,6 +214,11 @@
 
     <Style Selector="^.symbol-error">
       <Setter Property="Foreground" Value="{DynamicResource SystemErrorTextColor}"/>
+    </Style>
+
+    <Style Selector="^.symbol-add">
+      <Setter Property="Foreground" Value="{DynamicResource SymbolAddColor}"/>
+      <Setter Property="FontSize" Value="28"/>
     </Style>
   </Style>
 
@@ -138,6 +266,10 @@
       <Setter Property="Padding" Value="10"/>
       <Setter Property="Margin" Value="5"/>
       <Setter Property="MinWidth" Value="100"/>
+    </Style>
+
+    <Style Selector="^.btn-center">
+      <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
   </Style>
 

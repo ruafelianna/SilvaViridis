@@ -38,3 +38,6 @@ BatchesList_SearchBtn = 'Search'
 BatchesList_Table_Id = 'Id'
 BatchesList_Table_Name = 'Name'
 BatchesList_Table_Created = 'Created'
+
+# Device Connections
+DeviceConnections_Header = 'Device Connections'

@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.SerialPortView"
+             x:DataType="vm:SerialPortViewModel"
+             xmlns:vm="using:SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Models">
+  <Grid RowDefinitions="Auto,Auto,*">
+    <TextBlock Text="{Binding PortName}"
+               Grid.Row="0"/>
+
+    <Rectangle Grid.Row="1"
+               Classes="rect-line"/>
+
+    <ItemsControl ItemsSource="{Binding Addresses}"
+                  Grid.Row="2">
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <UniformGrid Columns="5"/>
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <ToggleButton IsChecked="{Binding IsChosen}"
+                        Classes.chosen="{Binding IsChosen}"
+                        Classes.notchosen="{Binding !IsChosen}"
+                        Classes="tbtn-devaddr">
+            <StackPanel>
+              <StackPanel Orientation="Horizontal">
+                <Border Classes.online="{Binding IsOnline}"
+                        Classes.offline="{Binding !IsOnline}"
+                        Classes="border-devaddr-online" />
+                <ContentControl Content="{Binding ProtocolInfo}" />
+              </StackPanel>
+            </StackPanel>
+          </ToggleButton>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+  </Grid>
+</UserControl>

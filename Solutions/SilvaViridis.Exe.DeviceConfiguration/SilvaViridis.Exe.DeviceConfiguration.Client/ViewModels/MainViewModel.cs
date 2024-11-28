@@ -16,6 +16,8 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
         {
             _viewSettingsViewModel = new(appInteractions);
 
+            _deviceConnectionsViewModel = new();
+
             Menu = CreateMenu(appInteractions);
         }
 
@@ -25,6 +27,8 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
         private ViewModelBase? _content;
 
         private readonly ViewSettingsViewModel _viewSettingsViewModel;
+
+        private readonly DeviceConnectionsViewModel _deviceConnectionsViewModel;
 
         private IMenuItem? _disabledMenu;
 
@@ -113,11 +117,16 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
 
             #region Devices
 
-            var devices_Connections = new MenuEndpoint(
+            MenuEndpoint devices_Connections = null!;
+
+            devices_Connections = new MenuEndpoint(
                 1,
                 new OneActionViewModel(
                     Strings.Menu_Connections,
-                    doNothing
+                    () => ShowContent(
+                        _deviceConnectionsViewModel,
+                        devices_Connections
+                    )
                 )
             );
 

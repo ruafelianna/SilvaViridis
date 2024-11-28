@@ -1,13 +1,16 @@
 using Avalonia.Controls;
 using HanumanInstitute.MvvmDialogs.Avalonia;
-using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.ViewModels.Interfaces;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.ViewModels.Interfaces.Batches;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Dialogs;
-using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Batches;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Devices;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Settings;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Dialogs;
-using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces;
-using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Models;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Batches;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Settings;
 
 namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
 {

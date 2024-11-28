@@ -1,4 +1,5 @@
 using ReactiveUI;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Interactions.Enums;
 using System;
 using System.Reactive;
 

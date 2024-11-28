@@ -268,8 +268,9 @@
       <Setter Property="MinWidth" Value="100"/>
     </Style>
 
-    <Style Selector="^.btn-center">
+    <Style Selector="^.btn-devport-add">
       <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="MinWidth" Value="200"/>
     </Style>
   </Style>
 

@@ -4,7 +4,9 @@ using SilvaViridis.Components.Menu;
 using SilvaViridis.Components.Menu.Abstractions;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Interactions;
-using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Batches;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Settings;
 using System.Reactive;
 using System.Reactive.Linq;
 

@@ -11,6 +11,7 @@ using SilvaViridis.Components;
 using SilvaViridis.Components.Assets.Translations;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Interactions;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Interactions.Enums;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Dialogs;
 using System;

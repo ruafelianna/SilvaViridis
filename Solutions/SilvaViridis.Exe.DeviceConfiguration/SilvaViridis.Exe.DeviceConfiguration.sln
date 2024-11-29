@@ -53,6 +53,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Interop.Protoc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Common.Checksums", "SilvaViridis.Common.Checksums\SilvaViridis.Common.Checksums.csproj", "{3CE8E800-8A83-4F0D-A354-10D11F510DCC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Common.Numerics", "SilvaViridis.Common.Numerics\SilvaViridis.Common.Numerics.csproj", "{08E7278F-739C-4CF4-AF05-67CBEC4247C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,6 +161,10 @@ Global
 		{3CE8E800-8A83-4F0D-A354-10D11F510DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CE8E800-8A83-4F0D-A354-10D11F510DCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CE8E800-8A83-4F0D-A354-10D11F510DCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08E7278F-739C-4CF4-AF05-67CBEC4247C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08E7278F-739C-4CF4-AF05-67CBEC4247C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08E7278F-739C-4CF4-AF05-67CBEC4247C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08E7278F-739C-4CF4-AF05-67CBEC4247C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

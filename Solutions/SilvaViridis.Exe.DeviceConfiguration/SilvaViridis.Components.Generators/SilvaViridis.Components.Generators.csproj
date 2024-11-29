@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(RootFolder)Analyzer.props" />
   <PropertyGroup>
-    <PackageVersion>1.0.0-alpha0028</PackageVersion>
+    <PackageVersion>1.0.0-alpha0030</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="SilvaViridis.Common.CSharp" GeneratePathProperty="true" />

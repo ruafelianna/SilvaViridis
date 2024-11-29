@@ -1,3 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(RootFolder)Standard.props" />
+  <ItemGroup>
+    <ProjectReference Include="..\SilvaViridis.Common.Text\SilvaViridis.Common.Text.csproj" />
+  </ItemGroup>
 </Project>

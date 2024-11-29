@@ -18,5 +18,10 @@ namespace SilvaViridis.Common.Text.Extensions
         ) => str.StartsWith(start)
             ? str[start.Length..]
             : str;
+
+        public static string Format(
+            this string? str,
+            params object?[]? args
+        ) => string.Format(str, args);
     }
 }

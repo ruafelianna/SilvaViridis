@@ -1,3 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(RootFolder)Standard.props" />
+  <PropertyGroup>
+    <PackageVersion>1.0.0-alpha0001</PackageVersion>
+  </PropertyGroup>
 </Project>

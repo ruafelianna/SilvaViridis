@@ -43,6 +43,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Components.Ava
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Common.Concurrent", "SilvaViridis.Common.Concurrent\SilvaViridis.Common.Concurrent.csproj", "{F0AAEAE9-27A8-4E80-A97F-7D18EC878E00}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Interop.Ports.SerialPort", "SilvaViridis.Interop.Ports.SerialPort\SilvaViridis.Interop.Ports.SerialPort.csproj", "{1AD4D3CC-501C-4259-88F8-743B72D69F8E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Interop.Ports.SerialPort.Abstractions", "SilvaViridis.Interop.Ports.SerialPort.Abstractions\SilvaViridis.Interop.Ports.SerialPort.Abstractions.csproj", "{1AC87A6C-6BCE-424E-B79E-BDF3ABCC5E21}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Interop.Protocols.Modbus", "SilvaViridis.Interop.Protocols.Modbus\SilvaViridis.Interop.Protocols.Modbus.csproj", "{3C750CD4-094D-4623-B627-13C23340BBD0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SilvaViridis.Interop.Protocols.Modbus.Abstractions", "SilvaViridis.Interop.Protocols.Modbus.Abstractions\SilvaViridis.Interop.Protocols.Modbus.Abstractions.csproj", "{E734DDED-8D32-4F72-87EF-DEBCE49B17C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +137,22 @@ Global
 		{F0AAEAE9-27A8-4E80-A97F-7D18EC878E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0AAEAE9-27A8-4E80-A97F-7D18EC878E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0AAEAE9-27A8-4E80-A97F-7D18EC878E00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AD4D3CC-501C-4259-88F8-743B72D69F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AD4D3CC-501C-4259-88F8-743B72D69F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AD4D3CC-501C-4259-88F8-743B72D69F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AD4D3CC-501C-4259-88F8-743B72D69F8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AC87A6C-6BCE-424E-B79E-BDF3ABCC5E21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AC87A6C-6BCE-424E-B79E-BDF3ABCC5E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AC87A6C-6BCE-424E-B79E-BDF3ABCC5E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AC87A6C-6BCE-424E-B79E-BDF3ABCC5E21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C750CD4-094D-4623-B627-13C23340BBD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C750CD4-094D-4623-B627-13C23340BBD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C750CD4-094D-4623-B627-13C23340BBD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C750CD4-094D-4623-B627-13C23340BBD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E734DDED-8D32-4F72-87EF-DEBCE49B17C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E734DDED-8D32-4F72-87EF-DEBCE49B17C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E734DDED-8D32-4F72-87EF-DEBCE49B17C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E734DDED-8D32-4F72-87EF-DEBCE49B17C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

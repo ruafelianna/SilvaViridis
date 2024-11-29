@@ -140,12 +140,27 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
                 )
             );
 
+            var test = new MenuEndpoint(
+                3,
+                new OneActionViewModel(
+                    Observable.Return("TEST"),
+                    () => ShowContent(
+                        new AddDevicePortViewModel(
+                            async() => { },
+                            async () => { }
+                        ),
+                        devices_Polling
+                    )
+                )
+            );
+
             var devices = new HeadedMenuSector(
                 30,
                 Strings.Menu_Devices,
                 [
                     devices_Connections,
                     devices_Polling,
+                    test,
                 ]
             );
 

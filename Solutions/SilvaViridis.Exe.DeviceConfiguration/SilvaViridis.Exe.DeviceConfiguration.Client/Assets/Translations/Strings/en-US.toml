@@ -10,6 +10,12 @@ Dialog_Ok = 'Ok'
 Lang_English = 'English'
 Lang_Russian = 'Русский'
 
+# Connections
+Conn_SerialPort = 'Serial Port'
+
+# Protocols
+Prot_ModbusRTU = 'Modbus RTU'
+
 # Menu
 Menu_Batches = 'Device Batches'
 Menu_Configurations = 'Configurations'

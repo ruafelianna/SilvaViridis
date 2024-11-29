@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="$(RootFolder)WinExe.props" />
+  <Import Project="$(RootFolder)CliExe.props" />
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>

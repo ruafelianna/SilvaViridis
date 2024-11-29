@@ -6,6 +6,12 @@ Dialog_Details = 'Подробности'
 Dialog_Error = 'Ошибка'
 Dialog_Ok = 'Ок'
 
+# Connections
+Conn_SerialPort = 'Последовательный порт'
+
+# Protocols
+Prot_ModbusRTU = 'Modbus RTU'
+
 # Menu
 Menu_Batches = 'Партии устройств'
 Menu_Configurations = 'Конфигурации'

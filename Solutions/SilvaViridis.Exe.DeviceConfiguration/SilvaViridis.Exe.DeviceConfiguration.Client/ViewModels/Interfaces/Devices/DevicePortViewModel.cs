@@ -28,6 +28,14 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devi
             ConnectionInfo = connectionInfo;
 
             Init(out _addressesCache, out _addresses);
+
+            for (int i = 0; i < 40; i++)
+            {
+                _addressesCache.AddOrUpdate(new DeviceAddressViewModel(
+                    this,
+                    new ModbusRTUViewModel((byte)(i + 1))
+                ));
+            }
         }
 
         public string Name { get; }

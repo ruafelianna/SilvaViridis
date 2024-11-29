@@ -14,6 +14,17 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devi
         public DeviceConnectionsViewModel()
         {
             Init(out _devPortsCache, out _devPorts);
+
+            for (int i = 0; i < 10; i++)
+            {
+                _devPortsCache.AddOrUpdate(new DevicePortViewModel(
+                    $"Name {i + 1}",
+                    new($"Device {i + 1}"),
+                    AvailableConnections.SerialPort,
+                    AvailableProtocols.ModbusRTU,
+                    new SerialPortViewModel($"COM{i + 1}")
+                ));
+            }
         }
 
         [SourceCache(KeyTypeName = nameof(IComparable))]

@@ -27,6 +27,8 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
             Register<DeviceConnectionsViewModel, DeviceConnectionsView>();
             Register<SerialPortViewModel, SerialPortView>();
             Register<ModbusRTUViewModel, ModbusRTUView>();
+            Register<AddDevicePortViewModel, AddDevicePortView>();
+            Register<AddSerialPortViewModel, AddSerialPortView>();
         }
 
         public override Control Build(object? data)

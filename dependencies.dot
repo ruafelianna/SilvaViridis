@@ -1,0 +1,159 @@
+digraph G {
+    STD [shape=diamond]
+    ANR [shape=diamond]
+    ANZ [shape=diamond]
+    AVL [shape=diamond]
+    DCR [shape=diamond]
+    WEB [shape=diamond]
+    
+    _a [label="System.Collections.Immutable", shape=hexagon]
+    _b [label="System.Reactive", shape=hexagon]
+    _c [label="Microsoft.CodeAnalysis.CSharp.Workspaces", shape=hexagon]
+    _d [label="IsExternalInit", shape=hexagon]
+    _e [label="ReactiveUI", shape=hexagon]
+    _f [label="ReactiveUI.SourceGenerators", shape=hexagon]
+    _g [label="Tommy", shape=hexagon]
+    _h [label="LanguageExt.Core", shape=hexagon]
+    _i [label="IndexRange", shape=hexagon]
+    _j [label="Nullable", shape=hexagon]
+    _k [label="ReactiveUI.Validation", shape=hexagon]
+    _l [label="Avalonia", shape=hexagon]
+    _m [label="HanumanInstitute.MvvmDialogs", shape=hexagon]
+    
+    a [label="Common.CSharp.Consts.Generators", shape=box]
+    g [label="Components.Generators", shape=box]
+    e [label="Common.Generators.Enums", shape=box]
+    i [label="Common.Localization.Generators", shape=box]
+    
+    b [label="Common.CSharp.Consts"]
+    c [label="Common.Generators"]
+    d [label="Common.Text"]
+    f [label="Common.CSharp"]
+    h [label="Components"]
+    j [label="Common.Localization"]
+    k [label="Common.Checksums"]
+    l [label="Common.Concurrent"]
+    m [label="Common.Localization.Abstractions"]
+    n [label="Common.Numerics"]
+    o [label="Components.Avalonia"]
+    p [label="Components.Menu"]
+    q [label="Components.Menu.Abstractions"]
+    r [label="Components.Menu.Avalonia"]
+    s [label="Exe.DeviceConfiguration.Client"]
+    t [label="Exe.DeviceConfiguration.Client.Avalonia"]
+    u [label="Exe.DeviceConfiguration.Client.Avalonia.Desktop"]
+    v [label="Exe.DeviceConfiguration.Server"]
+    w [label="Interop.Ports.SerialPort"]
+    x [label="Interop.Ports.SerialPort.Abstractions"]
+    y [label="Interop.Protocols.Modbus"]
+    z [label="Interop.Protocols.Modbus.Abstractions"]
+    
+    _i -> STD
+    _d -> STD [color="gray"]
+    _j -> STD [color="gray"]
+    
+    _d -> ANR [color="gray"]
+    
+    ANR -> ANZ
+    c -> ANZ [color="gray"]
+    d -> ANZ [color="gray"]
+    
+    STD -> k
+    _a -> k
+    
+    STD -> l
+    _b -> l
+    
+    STD -> f
+    e -> f [color="gray"]
+    
+    STD -> b
+    a -> b
+    
+    ANR -> a
+    _c -> a [color="gray"]
+    
+    STD -> c
+    _c -> c
+    b -> c
+    d -> c
+    
+    ANZ -> e
+    
+    STD -> j
+    _e -> j
+    _f -> j
+    _g -> j
+    _a -> j
+    i -> j
+    m -> j
+    
+    STD -> m
+    d -> m
+    
+    ANZ -> i
+    _h -> i
+    _g -> i
+    
+    STD -> n
+    
+    STD -> d
+    
+    STD -> h
+    _e -> h
+    _f -> h
+    _k -> h
+    g -> h
+    j -> h
+    d -> h
+    
+    DCR -> o
+    AVL -> o
+    _l -> o
+    
+    ANZ -> g
+    f -> g
+    
+    STD -> p
+    q -> p
+    h -> p
+    
+    STD -> q
+    
+    DCR -> r
+    AVL -> r
+    _l -> r
+    q -> r
+    
+    DCR -> s
+    j -> s
+    p -> s
+    h -> s
+    
+    DCR -> t
+    AVL -> t
+    # todo
+    o -> t
+    r -> t
+    s -> t
+    
+    DCR -> u
+    # todo
+    t -> u
+    
+    WEB -> v
+    # todo
+    
+    STD -> w
+    
+    STD -> x
+    
+    DCR -> y
+    z -> y
+    
+    DCR -> z
+    k -> z
+    j -> z
+    n -> z
+    x -> z
+}

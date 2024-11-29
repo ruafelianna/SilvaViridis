@@ -1,0 +1,3 @@
+generated_class_name = 'ModbusExceptionCodesStrings'
+generated_namespace = 'SilvaViridis.Interop.Protocols.Modbus.Abstractions.Assets.Translations'
+default_culture = 'en-US'

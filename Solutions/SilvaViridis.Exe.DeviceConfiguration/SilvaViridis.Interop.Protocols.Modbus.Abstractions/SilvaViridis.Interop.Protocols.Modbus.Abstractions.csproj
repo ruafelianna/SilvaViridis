@@ -1,3 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="$(RootFolder)Standard.props" />
+  <ItemGroup>
+    <AdditionalFiles Include="**\*.toml" />
+    <EmbeddedResource Include="**\*.toml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SilvaViridis.Common.Checksums\SilvaViridis.Common.Checksums.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Common.Localization\SilvaViridis.Common.Localization.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Common.Numerics\SilvaViridis.Common.Numerics.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Interop.Ports.SerialPort.Abstractions\SilvaViridis.Interop.Ports.SerialPort.Abstractions.csproj" />
+  </ItemGroup>
 </Project>

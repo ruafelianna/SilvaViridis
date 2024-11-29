@@ -1,0 +1,1 @@
+ModbusIncorrectResponseException = 'Modbus incorrect response, param = <{0}>'

@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="$(RootFolder)Standard.props" />
   <ItemGroup>
     <AdditionalFiles Include="**\*.toml" />
     <EmbeddedResource Include="**\*.toml" />
@@ -12,6 +11,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SilvaViridis.Common.Localization\SilvaViridis.Common.Localization.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Common.Numerics\SilvaViridis.Common.Numerics.csproj" />
     <ProjectReference Include="..\SilvaViridis.Common.Text\SilvaViridis.Common.Text.csproj" />
   </ItemGroup>
 </Project>

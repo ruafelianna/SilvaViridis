@@ -3,7 +3,6 @@ using SilvaViridis.Common.Numerics;
 using System;
 using System.Linq.Expressions;
 using System.Numerics;
-using System.Threading.Tasks;
 using static SilvaViridis.Components.Extensions.ValidationUtils;
 
 namespace SilvaViridis.Components.Extensions
@@ -13,7 +12,7 @@ namespace SilvaViridis.Components.Extensions
         public static ValidationHelper RuleShouldBeLess<TViewModel, TValue>(
             this TViewModel vm,
             Expression<Func<TViewModel, string?>> property,
-            Func<Task<TValue>> getValue,
+            IObservable<TValue> value,
             NumberRegex? numberRegex = null,
             IObservable<bool>? shouldApply = null,
             string? message = null
@@ -24,7 +23,7 @@ namespace SilvaViridis.Components.Extensions
                 INumberBase<TValue>
             => vm.CreateComparisonRule(
                 property,
-                getValue,
+                value,
                 ComparisonOperation.Less,
                 numberRegex,
                 shouldApply,
@@ -34,7 +33,7 @@ namespace SilvaViridis.Components.Extensions
         public static ValidationHelper RuleShouldBeLessOrEqual<TViewModel, TValue>(
             this TViewModel vm,
             Expression<Func<TViewModel, string?>> property,
-            Func<Task<TValue>> getValue,
+            IObservable<TValue> value,
             NumberRegex? numberRegex = null,
             IObservable<bool>? shouldApply = null,
             string? message = null
@@ -45,7 +44,7 @@ namespace SilvaViridis.Components.Extensions
                 INumberBase<TValue>
             => vm.CreateComparisonRule(
                 property,
-                getValue,
+                value,
                 ComparisonOperation.LessOrEqual,
                 numberRegex,
                 shouldApply,
@@ -55,7 +54,7 @@ namespace SilvaViridis.Components.Extensions
         public static ValidationHelper RuleShouldBeMore<TViewModel, TValue>(
             this TViewModel vm,
             Expression<Func<TViewModel, string?>> property,
-            Func<Task<TValue>> getValue,
+            IObservable<TValue> value,
             NumberRegex? numberRegex = null,
             IObservable<bool>? shouldApply = null,
             string? message = null
@@ -66,7 +65,7 @@ namespace SilvaViridis.Components.Extensions
                 INumberBase<TValue>
             => vm.CreateComparisonRule(
                 property,
-                getValue,
+                value,
                 ComparisonOperation.More,
                 numberRegex,
                 shouldApply,
@@ -76,7 +75,7 @@ namespace SilvaViridis.Components.Extensions
         public static ValidationHelper RuleShouldBeMoreOrEqual<TViewModel, TValue>(
             this TViewModel vm,
             Expression<Func<TViewModel, string?>> property,
-            Func<Task<TValue>> getValue,
+            IObservable<TValue> value,
             NumberRegex? numberRegex = null,
             IObservable<bool>? shouldApply = null,
             string? message = null
@@ -87,7 +86,7 @@ namespace SilvaViridis.Components.Extensions
                 INumberBase<TValue>
             => vm.CreateComparisonRule(
                 property,
-                getValue,
+                value,
                 ComparisonOperation.MoreOrEqual,
                 numberRegex,
                 shouldApply,
@@ -97,7 +96,7 @@ namespace SilvaViridis.Components.Extensions
         public static ValidationHelper RuleShouldBeEqual<TViewModel, TValue>(
             this TViewModel vm,
             Expression<Func<TViewModel, string?>> property,
-            Func<Task<TValue>> getValue,
+            IObservable<TValue> value,
             NumberRegex? numberRegex = null,
             IObservable<bool>? shouldApply = null,
             string? message = null
@@ -108,7 +107,7 @@ namespace SilvaViridis.Components.Extensions
                 INumberBase<TValue>
             => vm.CreateComparisonRule(
                 property,
-                getValue,
+                value,
                 ComparisonOperation.Equal,
                 numberRegex,
                 shouldApply,
@@ -118,7 +117,7 @@ namespace SilvaViridis.Components.Extensions
         public static ValidationHelper RuleShouldBeNotEqual<TViewModel, TValue>(
             this TViewModel vm,
             Expression<Func<TViewModel, string?>> property,
-            Func<Task<TValue>> getValue,
+            IObservable<TValue> value,
             NumberRegex? numberRegex = null,
             IObservable<bool>? shouldApply = null,
             string? message = null
@@ -129,7 +128,7 @@ namespace SilvaViridis.Components.Extensions
                 INumberBase<TValue>
             => vm.CreateComparisonRule(
                 property,
-                getValue,
+                value,
                 ComparisonOperation.NotEqual,
                 numberRegex,
                 shouldApply,

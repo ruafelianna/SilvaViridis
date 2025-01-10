@@ -9,7 +9,6 @@ using System.Globalization;
 using System.Linq.Expressions;
 using System.Numerics;
 using System.Reactive.Linq;
-using System.Threading.Tasks;
 
 namespace SilvaViridis.Components.Extensions
 {
@@ -83,8 +82,7 @@ namespace SilvaViridis.Components.Extensions
 
         public static string GetComparisonString(
             ComparisonOperation operation
-        ) => operation switch
-        {
+        ) => operation switch {
             ComparisonOperation.Less
                 => ValidationStrings.Less.Value!,
 
@@ -109,7 +107,7 @@ namespace SilvaViridis.Components.Extensions
         public static ValidationHelper CreateComparisonRule<TViewModel, TValue>(
             this TViewModel vm,
             Expression<Func<TViewModel, string?>> property,
-            Func<Task<TValue>> getValue,
+            IObservable<TValue> value,
             ComparisonOperation operation,
             NumberRegex? numberRegex,
             IObservable<bool>? shouldApply,
@@ -124,33 +122,35 @@ namespace SilvaViridis.Components.Extensions
                 vm
                     .WhenAnyValue(property)
                     .CombineLatest(
+                        value,
                         ValidationStrings.MustBeComparison.ValueObservable,
                         shouldApply ?? Observable.Return(true)
                     )
-                    .Select(async data => {
-                        var value = await getValue();
-                        return new
-                        {
-                            IsValid =
-                                data.First.IsNullOrWhiteSpace()
-                                || (
-                                    TValue.TryParse(
-                                        data.First,
-                                        numberRegex?.NumberStyles ?? NumberStyles.None,
-                                        numberRegex?.NumberFormat,
-                                        out var result
-                                    )
-                                    && Compare(operation, result, value)
-                                ),
-                            Msg = string.Format(
-                                data.Second,
-                                GetComparisonString(operation),
-                                value
-                            ),
-                            ShouldApply = data.Third,
-                        };
+                    .Select(data => new {
+                        Property = data.First,
+                        Value = data.Second,
+                        ErrorMsg = data.Third,
+                        ShouldApply = data.Fourth,
                     })
-                    .Concat(),
+                    .Select(data => new {
+                        IsValid =
+                            data.Property.IsNullOrWhiteSpace()
+                            || (
+                                TValue.TryParse(
+                                    data.Property,
+                                    numberRegex?.NumberStyles ?? NumberStyles.None,
+                                    numberRegex?.NumberFormat,
+                                    out var result
+                                )
+                                && Compare(operation, result, data.Value)
+                            ),
+                        Msg = string.Format(
+                            data.ErrorMsg,
+                            GetComparisonString(operation),
+                            data.Value
+                        ),
+                        data.ShouldApply,
+                    }),
                 data => !data.ShouldApply || data.IsValid,
                 data => message ?? data.Msg
             );

@@ -1,5 +1,6 @@
 CannotBeEmpty = 'Cannot be empty'
 MustBeComparison = 'Must be {0} {1}'
+MustBeComparisonFull = '{0} expression must be {1} {2}'
 Less = 'less than'
 LessOrEqual = 'less than or equal to'
 More = 'more than'

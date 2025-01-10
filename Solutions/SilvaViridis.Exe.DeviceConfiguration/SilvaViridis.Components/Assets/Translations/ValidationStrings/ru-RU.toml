@@ -1,5 +1,6 @@
 CannotBeEmpty = 'Не может быть пустым'
 MustBeComparison = 'Должно быть {0} {1}'
+MustBeComparisonFull = 'Выражение {0} должно быть {1} {2}'
 Less = '<'
 LessOrEqual = '⩽'
 More = '>'

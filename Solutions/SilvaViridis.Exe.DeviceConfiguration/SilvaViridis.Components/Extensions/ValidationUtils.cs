@@ -5,6 +5,8 @@ using SilvaViridis.Common.Numerics;
 using SilvaViridis.Common.Text.Extensions;
 using SilvaViridis.Components.Assets.Translations;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Numerics;
@@ -150,6 +152,69 @@ namespace SilvaViridis.Components.Extensions
                             data.Value
                         ),
                         data.ShouldApply,
+                    }),
+                data => !data.ShouldApply || data.IsValid,
+                data => message ?? data.Msg
+            );
+
+        public static ValidationHelper CreateComparisonRule<TViewModel, TProperty, T1, T2, TValue>(
+            this TViewModel vm,
+            Expression<Func<TViewModel, TProperty?>> property,
+            Expression<Func<TViewModel, T1?>> prop1,
+            Expression<Func<TViewModel, T2?>> prop2,
+            Func<T1, T2, TValue> process,
+            IObservable<TValue> value,
+            ComparisonOperation comparisonOperation,
+            IObservable<bool>? shouldApply,
+            IObservable<string> processDesc,
+            string? message
+        )
+            where TViewModel : ValidatableViewModelBase
+            where TValue :
+                INumberBase<TValue>,
+                IComparisonOperators<TValue, TValue, bool>
+            where T1 : struct
+            where T2 : struct
+            => vm.ValidationRule(
+                property,
+                vm
+                    .WhenAnyValue(prop1)
+                    .CombineLatest(
+                        vm.WhenAnyValue(prop2),
+                        value,
+                        ValidationStrings.MustBeComparisonFull.ValueObservable,
+                        processDesc,
+                        shouldApply ?? Observable.Return(true)
+                    )
+                    .Select(data => new
+                    {
+                        Prop1 = data.First,
+                        Prop2 = data.Second,
+                        Value = data.Third,
+                        ErrorMsg = data.Fourth,
+                        Description = data.Fifth,
+                        ShouldApply = data.Sixth,
+                    })
+                    .Select(data =>
+                    {
+                        return new
+                        {
+                            IsValid =
+                                data.Prop1 is null
+                                || data.Prop2 is null
+                                || Compare(
+                                    comparisonOperation,
+                                    process(data.Prop1.Value, data.Prop2.Value),
+                                    data.Value
+                                ),
+                            Msg = string.Format(
+                                data.ErrorMsg,
+                                data.Description,
+                                GetComparisonString(comparisonOperation),
+                                data.Value
+                            ),
+                            data.ShouldApply,
+                        };
                     }),
                 data => !data.ShouldApply || data.IsValid,
                 data => message ?? data.Msg

@@ -5,8 +5,6 @@ using SilvaViridis.Common.Numerics;
 using SilvaViridis.Common.Text.Extensions;
 using SilvaViridis.Components.Assets.Translations;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Numerics;
@@ -82,29 +80,31 @@ namespace SilvaViridis.Components.Extensions
                 _ => throw new ArgumentOutOfRangeException(nameof(operation)),
             };
 
-        public static string GetComparisonString(
+        public static IObservable<string> GetComparisonString(
             ComparisonOperation operation
-        ) => operation switch {
-            ComparisonOperation.Less
-                => ValidationStrings.Less.Value!,
+        ) => (
+            operation switch {
+                ComparisonOperation.Less
+                    => ValidationStrings.Less,
 
-            ComparisonOperation.LessOrEqual
-                => ValidationStrings.LessOrEqual.Value!,
+                ComparisonOperation.LessOrEqual
+                    => ValidationStrings.LessOrEqual,
 
-            ComparisonOperation.More
-                => ValidationStrings.More.Value!,
+                ComparisonOperation.More
+                    => ValidationStrings.More,
 
-            ComparisonOperation.MoreOrEqual
-                => ValidationStrings.MoreOrEqual.Value!,
+                ComparisonOperation.MoreOrEqual
+                    => ValidationStrings.MoreOrEqual,
 
-            ComparisonOperation.Equal
-                => ValidationStrings.Equal.Value!,
+                ComparisonOperation.Equal
+                    => ValidationStrings.Equal,
 
-            ComparisonOperation.NotEqual
-                => ValidationStrings.NotEqual.Value!,
+                ComparisonOperation.NotEqual
+                    => ValidationStrings.NotEqual,
 
-            _ => throw new ArgumentOutOfRangeException(nameof(operation)),
-        };
+                _ => throw new ArgumentOutOfRangeException(nameof(operation)),
+            }
+        ).ValueObservable;
 
         public static ValidationHelper CreateComparisonRule<TViewModel, TValue>(
             this TViewModel vm,
@@ -126,13 +126,15 @@ namespace SilvaViridis.Components.Extensions
                     .CombineLatest(
                         value,
                         ValidationStrings.MustBeComparison.ValueObservable,
+                        GetComparisonString(operation),
                         shouldApply ?? Observable.Return(true)
                     )
                     .Select(data => new {
                         Property = data.First,
                         Value = data.Second,
                         ErrorMsg = data.Third,
-                        ShouldApply = data.Fourth,
+                        ComparisonStr = data.Fourth,
+                        ShouldApply = data.Fifth,
                     })
                     .Select(data => new {
                         IsValid =
@@ -148,7 +150,7 @@ namespace SilvaViridis.Components.Extensions
                             ),
                         Msg = string.Format(
                             data.ErrorMsg,
-                            GetComparisonString(operation),
+                            data.ComparisonStr,
                             data.Value
                         ),
                         data.ShouldApply,
@@ -183,6 +185,7 @@ namespace SilvaViridis.Components.Extensions
                         vm.WhenAnyValue(prop2),
                         value,
                         ValidationStrings.MustBeComparisonFull.ValueObservable,
+                        GetComparisonString(comparisonOperation),
                         processDesc,
                         shouldApply ?? Observable.Return(true)
                     )
@@ -192,8 +195,9 @@ namespace SilvaViridis.Components.Extensions
                         Prop2 = data.Second,
                         Value = data.Third,
                         ErrorMsg = data.Fourth,
-                        Description = data.Fifth,
-                        ShouldApply = data.Sixth,
+                        ComparisonStr = data.Fifth,
+                        Description = data.Sixth,
+                        ShouldApply = data.Seventh,
                     })
                     .Select(data =>
                     {
@@ -210,7 +214,7 @@ namespace SilvaViridis.Components.Extensions
                             Msg = string.Format(
                                 data.ErrorMsg,
                                 data.Description,
-                                GetComparisonString(comparisonOperation),
+                                data.ComparisonStr,
                                 data.Value
                             ),
                             data.ShouldApply,

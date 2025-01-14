@@ -7,6 +7,7 @@ using HanumanInstitute.MvvmDialogs.Avalonia;
 using HanumanInstitute.MvvmDialogs.Avalonia.MessageBox;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
+using SilvaViridis.Common.Numerics;
 using SilvaViridis.Components;
 using SilvaViridis.Components.Assets.Translations;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations;
@@ -14,6 +15,8 @@ using SilvaViridis.Exe.DeviceConfiguration.Client.Interactions;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Interactions.Enums;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Dialogs;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices;
+using SilvaViridis.Interop.Ports.SerialPort;
 using System;
 using System.Globalization;
 using System.Reactive;
@@ -60,7 +63,24 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
 
             var appInteractions = new AppInteractions();
 
-            var vm = new MainViewModel(appInteractions);
+            var numberRegex = new NumberRegex(
+                new NumberFormatInfo
+                {
+                    NumberDecimalSeparator = ".",
+                    NumberGroupSeparator = ",",
+                    NumberGroupSizes = [3,],
+                },
+                NumberStyles.AllowThousands
+                | NumberStyles.AllowLeadingSign
+                | NumberStyles.AllowLeadingWhite
+                | NumberStyles.AllowTrailingWhite
+            );
+
+            var connInfoFactory = new AddConnectionInfoFactory<SerialPortContext>(
+                numberRegex
+            );
+
+            var vm = new MainViewModel(appInteractions, connInfoFactory);
 
             InitAppInteractions(
                 appInteractions,
@@ -72,7 +92,14 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
             _isDebug = true;
 
             appInteractions.ChangeLanguage
-                .Handle(AvailableLanguages.ru_RU)
+                .Handle(
+                    Enum.TryParse<AvailableLanguages>(
+                        CultureInfo.CurrentCulture.Name.Replace('-', '_'),
+                        out var enumLang
+                    )
+                        ? enumLang
+                        : default
+                )
                 .Wait();
 
             dialogService.Show(null, vm);

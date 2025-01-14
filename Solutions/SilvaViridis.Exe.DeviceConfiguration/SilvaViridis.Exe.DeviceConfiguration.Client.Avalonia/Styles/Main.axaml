@@ -114,10 +114,13 @@
       <Setter Property="HorizontalAlignment" Value="Center"/>
       <Setter Property="FontSize" Value="20"/>
       <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Margin" Value="0,10,0,5"/>
     </Style>
 
     <Style Selector="^.form-label">
       <Setter Property="HorizontalAlignment" Value="Right"/>
+      <Setter Property="VerticalAlignment" Value="Top"/>
+      <Setter Property="Margin" Value="5"/>
     </Style>
   </Style>
 
@@ -133,6 +136,8 @@
 
     <Style Selector="^.form-control">
       <Setter Property="Width" Value="300"/>
+      <Setter Property="Margin" Value="5"/>
+      <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
 
     <Style Selector="^.form-search">
@@ -157,6 +162,13 @@
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}"/>
       <Setter Property="Margin" Value="10"/>
+      <Setter Property="Padding" Value="10"/>
+    </Style>
+
+    <Style Selector="^.border-connection">
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}"/>
+      <Setter Property="Margin" Value="5"/>
       <Setter Property="Padding" Value="10"/>
     </Style>
 
@@ -207,6 +219,12 @@
 
   <Style Selector="ComboBox">
     <Setter Property="VerticalAlignment" Value="Center"/>
+
+    <Style Selector="^.form-control">
+      <Setter Property="Width" Value="300"/>
+      <Setter Property="Margin" Value="5"/>
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
   </Style>
 
   <Style Selector="ic|SymbolIcon">
@@ -266,6 +284,10 @@
       <Setter Property="Padding" Value="10"/>
       <Setter Property="Margin" Value="5"/>
       <Setter Property="MinWidth" Value="100"/>
+    </Style>
+
+    <Style Selector="^.form-additional-btn">
+      <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
 
     <Style Selector="^.btn-devport-add">

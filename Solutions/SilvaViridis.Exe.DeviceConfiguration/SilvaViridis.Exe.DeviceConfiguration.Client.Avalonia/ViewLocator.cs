@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using HanumanInstitute.MvvmDialogs;
 using HanumanInstitute.MvvmDialogs.Avalonia;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.ViewModels.Interfaces.Batches;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views;
@@ -10,6 +11,7 @@ using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Dialogs;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Batches;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices.Abstractions;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Settings;
 
 namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
@@ -27,6 +29,24 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
             Register<DeviceConnectionsViewModel, DeviceConnectionsView>();
             Register<SerialPortViewModel, SerialPortView>();
             Register<ModbusRTUViewModel, ModbusRTUView>();
+            Register<AddDevicePortViewModel, AddDevicePortView>();
+            Register<IAddSerialPortViewModel, AddSerialPortView>();
+        }
+
+        public override ViewDefinition Locate(object viewModel)
+        {
+            if (
+                viewModel is IAddSerialPortViewModel
+                && Registrations.TryGetValue(
+                    typeof(IAddSerialPortViewModel),
+                    out var viewDefinition
+                )
+            )
+            {
+                return viewDefinition;
+            }
+
+            return base.Locate(viewModel);
         }
 
         public override Control Build(object? data)

@@ -6,6 +6,12 @@ Dialog_Details = 'Подробности'
 Dialog_Error = 'Ошибка'
 Dialog_Ok = 'Ок'
 
+# Connections
+Conn_SerialPort = 'Последовательный порт'
+
+# Protocols
+Prot_ModbusRTU = 'Modbus RTU'
+
 # Menu
 Menu_Batches = 'Партии устройств'
 Menu_Configurations = 'Конфигурации'
@@ -37,3 +43,17 @@ BatchesList_Table_Created = 'Создана'
 
 # Device Connections
 DeviceConnections_Header = 'Подключения'
+
+# Add Connection
+AddConnection_Header = 'Добавить подключение'
+AddConnection_Name = 'Название'
+AddConnection_Device = 'Устройство'
+AddConnection_Connection = 'Подключение'
+AddConnection_Protocol = 'Протокол'
+
+# Add SerialPort Connection
+AddConnection_Port = 'Порт'
+AddConnection_AddAddresses = 'Добавить адреса'
+AddConnection_StartingWith = 'Начиная с'
+AddConnection_Quantity = 'Количество'
+AddConnection_StartingWith_Quantity_Constraint = '`Начиная с` + `Количество`'

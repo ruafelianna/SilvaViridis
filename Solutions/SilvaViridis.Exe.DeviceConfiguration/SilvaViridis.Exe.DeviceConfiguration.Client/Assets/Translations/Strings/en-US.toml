@@ -10,6 +10,12 @@ Dialog_Ok = 'Ok'
 Lang_English = 'English'
 Lang_Russian = 'Русский'
 
+# Connections
+Conn_SerialPort = 'Serial Port'
+
+# Protocols
+Prot_ModbusRTU = 'Modbus RTU'
+
 # Menu
 Menu_Batches = 'Device Batches'
 Menu_Configurations = 'Configurations'
@@ -41,3 +47,17 @@ BatchesList_Table_Created = 'Created'
 
 # Device Connections
 DeviceConnections_Header = 'Device Connections'
+
+# Add Connection
+AddConnection_Header = 'Add Connection'
+AddConnection_Name = 'Name'
+AddConnection_Device = 'Device'
+AddConnection_Connection = 'Connection'
+AddConnection_Protocol = 'Protocol'
+
+# Add SerialPort Connection
+AddConnection_Port = 'Port'
+AddConnection_AddAddresses = 'Add Addresses'
+AddConnection_StartingWith = 'Starting With'
+AddConnection_Quantity = 'Quantity'
+AddConnection_StartingWith_Quantity_Constraint = '`Starting With` + `Quantity`'

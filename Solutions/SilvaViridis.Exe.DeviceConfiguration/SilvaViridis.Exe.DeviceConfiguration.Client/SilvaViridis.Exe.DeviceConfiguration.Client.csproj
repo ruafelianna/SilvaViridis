@@ -8,7 +8,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SilvaViridis.Common.Localization\SilvaViridis.Common.Localization.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Common.Numerics\SilvaViridis.Common.Numerics.csproj" />
     <ProjectReference Include="..\SilvaViridis.Components.Menu\SilvaViridis.Components.Menu.csproj" />
     <ProjectReference Include="..\SilvaViridis.Components\SilvaViridis.Components.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Interop.Ports.SerialPort.Abstractions\SilvaViridis.Interop.Ports.SerialPort.Abstractions.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Interop.Ports.SerialPort\SilvaViridis.Interop.Ports.SerialPort.csproj" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,73 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="abs:IAddSerialPortViewModel"
+             x:Class="SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Devices.AddSerialPortView"
+             xmlns:tr="using:SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations"
+             xmlns:abs="using:SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices.Abstractions"
+             xmlns:ic="using:FluentIcons.Avalonia">
+  <Grid ColumnDefinitions="Auto,Auto,Auto"
+        RowDefinitions="Auto,Auto,Auto,Auto"
+        Classes="form-content">
+    <TextBlock Text="{Binding Path=Value,
+                      Source={x:Static tr:Strings.AddConnection_Port}}"
+               Grid.Column="0"
+               Grid.Row="0"
+               Classes="form-label"/>
+    <ComboBox SelectedItem="{Binding SelectedPort}"
+              ItemsSource="{Binding AvailablePorts}"
+              Grid.Column="1"
+              Grid.Row="0"
+              Classes="form-control">
+      <ComboBox.ItemTemplate>
+        <DataTemplate>
+          <TextBlock Text="{Binding Name}" />
+        </DataTemplate>
+      </ComboBox.ItemTemplate>
+    </ComboBox>
+    <Button Command="{Binding RefreshPorts}"
+            Classes="form-additional-btn"
+            Grid.Column="2"
+            Grid.Row="0">
+      <ic:SymbolIcon Symbol="ArrowSync"
+                     IconVariant="Regular"/>
+    </Button>
+
+    <TextBlock Text="{Binding Path=Value,
+                      Source={x:Static tr:Strings.AddConnection_AddAddresses}}"
+               Grid.Column="0"
+               Grid.Row="1"
+               Classes="form-label"/>
+
+    <CheckBox IsChecked="{Binding AddAddresses}"
+              Grid.Column="1"
+              Grid.Row="1"
+              Classes="form-control"/>
+
+    <TextBlock Text="{Binding Path=Value,
+                      Source={x:Static tr:Strings.AddConnection_Quantity}}"
+               Grid.Column="0"
+               Grid.Row="3"
+               Classes="form-label"
+               IsVisible="{Binding AddAddresses}" />
+    <TextBox Text="{Binding AddressesQuantity_Str}"
+             Grid.Column="1"
+             Grid.Row="3"
+             Classes="form-control"
+             IsVisible="{Binding AddAddresses}" />
+
+    <TextBlock Text="{Binding Path=Value,
+                      Source={x:Static tr:Strings.AddConnection_StartingWith}}"
+               Grid.Column="0"
+               Grid.Row="2"
+               Classes="form-label"
+               IsVisible="{Binding AddAddresses}" />
+    <TextBox Text="{Binding AddressesStartingWith_Str}"
+             Grid.Column="1"
+             Grid.Row="2"
+             Classes="form-control"
+             IsVisible="{Binding AddAddresses}" />
+  </Grid>
+</UserControl>

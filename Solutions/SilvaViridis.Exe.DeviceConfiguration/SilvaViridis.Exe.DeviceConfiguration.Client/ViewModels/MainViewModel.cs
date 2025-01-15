@@ -11,6 +11,7 @@ using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices.Abstractions;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Settings;
 using System;
+using System.Collections.Concurrent;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -24,23 +25,30 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
             IAddConnectionInfoFactory connInfoFactory
         )
         {
-            _viewSettingsViewModel = new(appInteractions);
+            ViewSettings = new(appInteractions);
 
             _deviceConnectionsViewModel = new();
 
             Menu = CreateMenu(appInteractions, connInfoFactory);
+
+            IsMenuEnabled = true;
         }
 
+        public ViewSettingsViewModel ViewSettings { get; }
+
         public IMenuSector Menu { get; }
+
+        [Reactive]
+        private bool _isMenuEnabled;
 
         [Reactive(SetModifier = AccessModifier.Private)]
         private ViewModelBase? _content;
 
-        private readonly ViewSettingsViewModel _viewSettingsViewModel;
-
         private readonly DeviceConnectionsViewModel _deviceConnectionsViewModel;
 
-        private IMenuItem? _disabledMenu;
+        private readonly object _menuLock = new();
+
+        private readonly ConcurrentStack<ViewModelBase> _menuStack = new();
 
         private MenuSector CreateMenu(
             AppInteractions appInteractions,
@@ -48,15 +56,6 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
         )
         {
             static void doNothing() { }
-
-            #region Header
-
-            var viewSettings = new MenuEndpoint(
-                1,
-                _viewSettingsViewModel
-            );
-
-            #endregion
 
             #region Configuration
 
@@ -99,8 +98,7 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
                         new CreateBatchViewModel(
                             async () => HideContent(),
                             async () => HideContent()
-                        ),
-                        batches_Create
+                        )
                     )
                 )
             );
@@ -185,8 +183,7 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
                             list,
                             refreshDevices,
                             connInfoFactory
-                        ),
-                        devices_Polling
+                        )
                     )
                 )
             );
@@ -243,7 +240,6 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
             return new MenuSector(
                 1,
                 [
-                    viewSettings,
                     configuration,
                     batches,
                     devices,
@@ -254,27 +250,57 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
             );
         }
 
-        private void ShowContent(ViewModelBase vm, IMenuItem menu)
+        private void ShowContent(ViewModelBase vm) => ShowContent(vm, null);
+
+        private void ShowContent(
+            ViewModelBase vm,
+            IMenuItem? menuItem
+        )
         {
-            if (_disabledMenu is not null)
+            lock (_menuLock)
             {
-                _disabledMenu.IsEnabled = true;
+                if (menuItem is null)
+                {
+                    IsMenuEnabled = false;
+                }
+                else
+                {
+                    menuItem.IsEnabled = false;
+                    _menuStack.Clear();
+                }
+
+                if (Content is not null)
+                {
+                    _menuStack.Push(Content);
+                }
+
+                Content = vm;
             }
-
-            _disabledMenu = menu;
-            _disabledMenu.IsEnabled = false;
-
-            Content = vm;
         }
 
-        private void HideContent()
-        {
-            Content = null;
+        private void HideContent() => HideContent(null);
 
-            if (_disabledMenu is not null)
+        private void HideContent(IMenuItem? menuItem)
+        {
+            lock (_menuLock)
             {
-                _disabledMenu.IsEnabled = true;
-                _disabledMenu = null;
+                if (_menuStack.TryPop(out var vm))
+                {
+                    Content = vm;
+                }
+                else
+                {
+                    Content = null;
+                }
+
+                if (menuItem is null)
+                {
+                    IsMenuEnabled = true;
+                }
+                else
+                {
+                    menuItem.IsEnabled = true;
+                }
             }
         }
     }

@@ -13,7 +13,12 @@
     <ctrl:SimpleExpander Classes="menu-panel"
                          Grid.Column="0">
       <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <menu:MenuListBox ItemsSource="{Binding Menu.MenuItems}"/>
+        <StackPanel>
+          <ContentControl Content="{Binding ViewSettings}"
+                          Classes="menu-item"/>
+          <menu:MenuListBox ItemsSource="{Binding Menu.MenuItems}"
+                            IsEnabled="{Binding IsMenuEnabled}"/>
+        </StackPanel>
       </ScrollViewer>
     </ctrl:SimpleExpander>
 

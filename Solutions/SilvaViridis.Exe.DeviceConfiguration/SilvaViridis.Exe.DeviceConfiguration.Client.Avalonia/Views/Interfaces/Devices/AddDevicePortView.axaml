@@ -65,7 +65,7 @@
                   Classes="form-control">
           <ComboBox.ItemTemplate>
             <DataTemplate>
-              <TextBlock Text="{Binding Value.ValueObservable^}" />
+              <TextBlock Text="{Binding Name.ValueObservable^}" />
             </DataTemplate>
           </ComboBox.ItemTemplate>
         </ComboBox>
@@ -77,19 +77,20 @@
                    Classes="form-label"/>
         <ComboBox SelectedItem="{Binding SelectedProtocol}"
                   ItemsSource="{Binding Protocols}"
+                  IsEnabled="{Binding CanSelectProtocol}"
                   Grid.Column="1"
                   Grid.Row="3"
                   Classes="form-control">
           <ComboBox.ItemTemplate>
             <DataTemplate>
-              <TextBlock Text="{Binding Value.ValueObservable^}" />
+              <TextBlock Text="{Binding Name.ValueObservable^}" />
             </DataTemplate>
           </ComboBox.ItemTemplate>
         </ComboBox>
 
         <Border Classes="border-connection"
                 Grid.Row="4"
-                Grid.ColumnSpan="2"
+                Grid.ColumnSpan="3"
                 IsVisible="{Binding ConnectionInfo,
                             Converter={x:Static ObjectConverters.IsNotNull}}">
           <ContentControl Content="{Binding ConnectionInfo}"/>

@@ -1,13 +1,16 @@
+using DynamicData;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
-using SilvaViridis.Common.Localization.Abstractions;
 using SilvaViridis.Components;
 using SilvaViridis.Components.Extensions;
+using SilvaViridis.Components.Generators;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices.Abstractions;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices.DTOs;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices.Enums;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
@@ -29,15 +32,39 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devi
 
             RefreshDevices = ReactiveCommand.CreateFromTask(refreshDevices);
 
-            Connections = new Dictionary<AvailableConnections, ITranslationUnit>
-            {
-                [AvailableConnections.SerialPort] = Strings.Conn_SerialPort,
-            };
+            Connections = [
+                new(
+                    AvailableConnections.SerialPort,
+                    Strings.Conn_SerialPort,
+                    [
+                        AvailableProtocols.ModbusRTU,
+                    ]
+                ),
+            ];
 
-            Protocols = new Dictionary<AvailableProtocols, ITranslationUnit>
-            {
-                [AvailableProtocols.ModbusRTU] = Strings.Prot_ModbusRTU,
-            };
+            static Func<ProtocolOption, bool> protocolFilter(
+                ConnectionOption? connection
+            ) => protocol =>
+                connection is not null
+                && connection.SupportedProtocols.Contains(protocol.Protocol);
+
+            var protocolPredicate = this
+                .WhenAnyValue(vm => vm.SelectedConnection)
+                .Select(protocolFilter);
+
+            _protocolsCache = new(x => x.Protocol);
+
+            _protocolsCache.AddOrUpdate(new ProtocolOption(
+                AvailableProtocols.ModbusRTU,
+                Strings.Prot_ModbusRTU
+            ));
+
+            _protocolsCache
+                .Connect()
+                .Filter(protocolPredicate)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Bind(out _protocols)
+                .Subscribe();
 
             _canSelectProtocolHelper = this
                 .WhenAnyValue(vm => vm.SelectedConnection)
@@ -49,15 +76,15 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devi
                     vm => vm.SelectedConnection,
                     vm => vm.SelectedProtocol
                 )
-                .Where(selection =>
-                    selection.Item1 is not null
-                    && selection.Item2 is not null
+                .Select(selection =>
+                    selection.Item1 is null || selection.Item2 is null
+                        ? null
+                        : selection.Item2!.Protocol switch {
+                            AvailableProtocols.ModbusRTU
+                                => connInfoFactory.CreateSerialPortInfo(),
+                            _ => null,
+                        }
                 )
-                .Select(selection => selection.Item2!.Value.Key switch {
-                    AvailableProtocols.ModbusRTU
-                        => connInfoFactory.CreateSerialPortInfo(),
-                    _ => null,
-                })
                 .ToProperty(this, vm => vm.ConnectionInfo);
 
             this.RuleNotNullOrWhiteSpace(vm => vm.Name);
@@ -76,18 +103,22 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devi
 
         public IEnumerable<IDeviceType> Devices { get; }
 
-        public IReadOnlyDictionary<AvailableConnections, ITranslationUnit> Connections { get; }
+        public IEnumerable<ConnectionOption> Connections { get; }
 
-        public IReadOnlyDictionary<AvailableProtocols, ITranslationUnit> Protocols { get; }
+        [SourceCache(
+            KeyTypeName = nameof(AvailableProtocols),
+            KeyTypeNamespace = $"{nameof(SilvaViridis)}.{nameof(Exe)}.{nameof(DeviceConfiguration)}.{nameof(Client)}.{nameof(ViewModels)}.{nameof(Interfaces)}.{nameof(Interfaces.Devices)}.{nameof(Enums)}"
+        )]
+        private readonly ReadOnlyObservableCollection<ProtocolOption> _protocols;
 
         [Reactive]
         private IDeviceType? _selectedDevice;
 
         [Reactive]
-        private KeyValuePair<AvailableConnections, ITranslationUnit>? _selectedConnection;
+        private ConnectionOption? _selectedConnection;
 
         [Reactive]
-        private KeyValuePair<AvailableProtocols, ITranslationUnit>? _selectedProtocol;
+        private ProtocolOption? _selectedProtocol;
 
         [ObservableAsProperty]
         private bool _canSelectProtocol;

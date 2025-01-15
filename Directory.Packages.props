@@ -20,7 +20,7 @@
     <PackageVersion Include="SilvaViridis.Common.Generators.Enums" Version="1.0.0-alpha0003" />
     <PackageVersion Include="SilvaViridis.Common.Localization.Generators" Version="1.0.0-alpha0021" />
     <PackageVersion Include="SilvaViridis.Common.Text" Version="1.0.0-alpha0001" />
-    <PackageVersion Include="SilvaViridis.Components.Generators" Version="1.0.0-alpha0030" />
+    <PackageVersion Include="SilvaViridis.Components.Generators" Version="1.0.0-alpha0031" />
   </ItemGroup>
   <ItemGroup Label="AvaloniaPackages">
     <PackageVersion Include="Avalonia" Version="$(Version_Avalonia)" />

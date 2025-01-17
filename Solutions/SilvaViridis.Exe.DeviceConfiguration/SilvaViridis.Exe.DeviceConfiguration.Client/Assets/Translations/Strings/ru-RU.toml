@@ -53,7 +53,10 @@ AddConnection_Protocol = 'Протокол'
 
 # Add SerialPort Connection
 AddConnection_Port = 'Порт'
+
+# Add ModbusRTU Connection
 AddConnection_AddAddresses = 'Добавить адреса'
 AddConnection_StartingWith = 'Начиная с'
 AddConnection_Quantity = 'Количество'
-AddConnection_StartingWith_Quantity_Constraint = '`Начиная с` + `Количество`'
+AddConnection_Step = 'Шаг'
+AddConnection_StartingWith_Quantity_Step_Constraint = '`Начиная с` + `Количество` * `Шаг`'

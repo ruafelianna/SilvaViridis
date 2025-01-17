@@ -57,7 +57,10 @@ AddConnection_Protocol = 'Protocol'
 
 # Add SerialPort Connection
 AddConnection_Port = 'Port'
+
+# Add ModbusRTU Connection
 AddConnection_AddAddresses = 'Add Addresses'
 AddConnection_StartingWith = 'Starting With'
 AddConnection_Quantity = 'Quantity'
-AddConnection_StartingWith_Quantity_Constraint = '`Starting With` + `Quantity`'
+AddConnection_Step = 'Step'
+AddConnection_StartingWith_Quantity_Step_Constraint = '`Starting With` + `Quantity` * `Step`'

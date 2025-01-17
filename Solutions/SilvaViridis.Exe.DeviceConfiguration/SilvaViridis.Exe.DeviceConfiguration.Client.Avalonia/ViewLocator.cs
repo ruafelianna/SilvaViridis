@@ -5,13 +5,17 @@ using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.ViewModels.Interfaces
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Dialogs;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Batches;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Connections;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Devices;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Protocols;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Settings;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Dialogs;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Batches;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Connections;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Connections.Abstractions;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices;
-using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices.Abstractions;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Protocols;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Settings;
 
 namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
@@ -27,27 +31,16 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
             Register<CreateBatchViewModel, CreateBatchView>();
             Register<BatchListViewModelProxy, BatchListView>();
             Register<DeviceConnectionsViewModel, DeviceConnectionsView>();
-            Register<SerialPortViewModel, SerialPortView>();
-            Register<ModbusRTUViewModel, ModbusRTUView>();
-            Register<AddDevicePortViewModel, AddDevicePortView>();
-            Register<IAddSerialPortViewModel, AddSerialPortView>();
+            Register<SerialPortConnectionViewModel, SerialPortConnectionView>();
+            Register<ModbusRTUProtocolViewModel, ModbusRTUProtocolView>();
+            Register<AddDeviceConnectionViewModel, AddDeviceConnectionView>();
+            Register<IAddSerialPortConnectionViewModel, AddSerialPortConnectionView>();
+            Register<AddModbusRTUProtocolViewModel, AddModbusRTUProtocolView>();
         }
 
         public override ViewDefinition Locate(object viewModel)
-        {
-            if (
-                viewModel is IAddSerialPortViewModel
-                && Registrations.TryGetValue(
-                    typeof(IAddSerialPortViewModel),
-                    out var viewDefinition
-                )
-            )
-            {
-                return viewDefinition;
-            }
-
-            return base.Locate(viewModel);
-        }
+            => LocateCustom<IAddSerialPortConnectionViewModel>(viewModel)
+                ?? base.Locate(viewModel);
 
         public override Control Build(object? data)
         {
@@ -70,6 +63,22 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
             }
 
             return result;
+        }
+
+        private ViewDefinition? LocateCustom<T>(object viewModel)
+        {
+            if (
+                viewModel is T
+                && Registrations.TryGetValue(
+                    typeof(T),
+                    out var viewDefinition
+                )
+            )
+            {
+                return viewDefinition;
+            }
+
+            return null;
         }
     }
 }

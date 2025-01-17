@@ -1,0 +1,122 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Devices.AddDeviceConnectionView"
+             x:DataType="vm:AddDeviceConnectionViewModel"
+             xmlns:tr="using:SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations"
+             xmlns:vm="using:SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices"
+             xmlns:ic="using:FluentIcons.Avalonia">
+  <Grid RowDefinitions="Auto,Auto,Auto">
+    <TextBlock Text="{Binding Path=Value,
+                      Source={x:Static tr:Strings.AddConnection_Header}}"
+               Grid.Row="0"
+               Classes="form-header"/>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  Grid.Row="1">
+      <Grid ColumnDefinitions="Auto,Auto,Auto"
+            RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+            Classes="form-content">
+        <TextBlock Text="{Binding Path=Value,
+                          Source={x:Static tr:Strings.AddConnection_Name}}"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Classes="form-label"/>
+        <TextBox Text="{Binding Name}"
+                 Grid.Column="1"
+                 Grid.Row="0"
+                 Classes="form-control" />
+
+        <TextBlock Text="{Binding Path=Value,
+                          Source={x:Static tr:Strings.AddConnection_Device}}"
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   Classes="form-label"/>
+        <ComboBox SelectedItem="{Binding SelectedDevice}"
+                  ItemsSource="{Binding Devices}"
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  Classes="form-control">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Name}" />
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button Command="{Binding RefreshDevices}"
+                Classes="form-additional-btn"
+                Grid.Column="2"
+                Grid.Row="1">
+          <ic:SymbolIcon Symbol="ArrowSync"
+                         IconVariant="Regular"/>
+        </Button>
+
+        <TextBlock Text="{Binding Path=Value,
+                          Source={x:Static tr:Strings.AddConnection_Connection}}"
+                   Grid.Column="0"
+                   Grid.Row="2"
+                   Classes="form-label"/>
+        <ComboBox SelectedItem="{Binding SelectedConnection}"
+                  ItemsSource="{Binding Connections}"
+                  Grid.Column="1"
+                  Grid.Row="2"
+                  Classes="form-control">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Name.ValueObservable^}" />
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Border Classes="border-connection"
+                Grid.Row="3"
+                Grid.ColumnSpan="3"
+                IsVisible="{Binding ConnectionInfo,
+                            Converter={x:Static ObjectConverters.IsNotNull}}">
+          <ContentControl Content="{Binding ConnectionInfo}"/>
+        </Border>
+
+        <TextBlock Text="{Binding Path=Value,
+                          Source={x:Static tr:Strings.AddConnection_Protocol}}"
+                   Grid.Column="0"
+                   Grid.Row="4"
+                   Classes="form-label"/>
+        <ComboBox SelectedItem="{Binding SelectedProtocol}"
+                  ItemsSource="{Binding Protocols}"
+                  IsEnabled="{Binding CanSelectProtocol}"
+                  Grid.Column="1"
+                  Grid.Row="4"
+                  Classes="form-control">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Name.ValueObservable^}" />
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Border Classes="border-connection"
+                Grid.Row="5"
+                Grid.ColumnSpan="3"
+                IsVisible="{Binding ProtocolInfo,
+                            Converter={x:Static ObjectConverters.IsNotNull}}">
+          <ContentControl Content="{Binding ProtocolInfo}"/>
+        </Border>
+      </Grid>
+    </ScrollViewer>
+
+    <StackPanel Orientation="Horizontal"
+                Grid.Row="2"
+                Classes="form-btn-group">
+      <Button Content="{Binding Path=Value,
+                        Source={x:Static tr:Strings.Cmd_Cancel}}"
+              Command="{Binding CmdCancel}"
+              Classes="form-btn"/>
+      <Button Content="{Binding Path=Value,
+                        Source={x:Static tr:Strings.Cmd_Create}}"
+              Command="{Binding CmdSave}"
+              Classes="form-btn"/>
+    </StackPanel>
+  </Grid>
+</UserControl>

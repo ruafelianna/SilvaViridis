@@ -15,7 +15,8 @@
 
     <Button Grid.Row="1"
             Width="{Binding #ScrollViewer_DevPorts.Bounds.Width}"
-            Classes="btn-devport-add">
+            Classes="btn-devport-add"
+            Command="{Binding AddConnection}">
       <ic:SymbolIcon Symbol="MailInboxAdd"
                      IconVariant="Regular"
                      Classes="symbol-add"/>
@@ -25,7 +26,7 @@
                   Grid.Row="2"
                   Classes="form-table"
                   Name="ScrollViewer_DevPorts">
-      <ItemsControl ItemsSource="{Binding DevPorts}"
+      <ItemsControl ItemsSource="{Binding Connections}"
                     Classes="form-table-data">
         <ItemsControl.ItemsPanel>
           <ItemsPanelTemplate>
@@ -53,8 +54,8 @@
 
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="2">
-                  <TextBlock Text="{Binding Connection}" />
-                  <TextBlock Text="{Binding Protocol}" />
+                  <TextBlock Text="{Binding Connection.Connection}" />
+                  <TextBlock Text="{Binding Protocol.Protocol}" />
                 </StackPanel>
 
                 <ContentControl Content="{Binding ConnectionInfo}"

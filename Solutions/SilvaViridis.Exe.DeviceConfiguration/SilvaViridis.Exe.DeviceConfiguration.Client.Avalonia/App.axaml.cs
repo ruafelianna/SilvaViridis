@@ -15,7 +15,8 @@ using SilvaViridis.Exe.DeviceConfiguration.Client.Interactions;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Interactions.Enums;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Dialogs;
-using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Connections;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Protocols;
 using SilvaViridis.Interop.Ports.SerialPort;
 using System;
 using System.Globalization;
@@ -76,11 +77,15 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
                 | NumberStyles.AllowTrailingWhite
             );
 
-            var connInfoFactory = new AddConnectionInfoFactory<SerialPortContext>(
-                numberRegex
-            );
+            var connectionFactory = new AddConnectionFactory<SerialPortContext>();
 
-            var vm = new MainViewModel(appInteractions, connInfoFactory);
+            var protocolFactory = new AddProtocolFactory(numberRegex);
+
+            var vm = new MainViewModel(
+                appInteractions,
+                connectionFactory,
+                protocolFactory
+            );
 
             InitAppInteractions(
                 appInteractions,

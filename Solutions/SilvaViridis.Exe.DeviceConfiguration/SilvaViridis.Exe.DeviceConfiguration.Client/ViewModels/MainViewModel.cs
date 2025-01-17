@@ -7,8 +7,9 @@ using SilvaViridis.Components.Menu.Abstractions;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Interactions;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Batches;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Connections.Abstractions;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices;
-using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices.Abstractions;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Protocols.Abstractions;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Settings;
 using System;
 using System.Collections.Concurrent;
@@ -22,14 +23,45 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
     {
         public MainViewModel(
             AppInteractions appInteractions,
-            IAddConnectionInfoFactory connInfoFactory
+            IAddConnectionFactory addConnectionFactory,
+            IAddProtocolFactory addProtocolFactory
         )
         {
             ViewSettings = new(appInteractions);
 
-            _deviceConnectionsViewModel = new();
+            var devs = new SourceCache<DeviceViewModel, string>(x => x.Name);
 
-            Menu = CreateMenu(appInteractions, connInfoFactory);
+            devs
+                .Connect()
+                .SortBy(x => x.Name)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Bind(out var list)
+                .Subscribe();
+
+            Task refreshDevices() => Task.Run(() =>
+            {
+                using var suspend = devs.SuspendNotifications();
+                devs.Clear();
+                for (int i = 0; i < 5; i++)
+                {
+                    devs.AddOrUpdate(
+                        new DeviceViewModel(
+                            Guid.NewGuid().ToString()
+                        )
+                    );
+                }
+            });
+
+            _deviceConnectionsViewModel = new(
+                ShowContent,
+                HideContent,
+                list,
+                refreshDevices,
+                addConnectionFactory,
+                addProtocolFactory
+            );
+
+            Menu = CreateMenu(appInteractions);
 
             IsMenuEnabled = true;
         }
@@ -50,10 +82,7 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
 
         private readonly ConcurrentStack<ViewModelBase> _menuStack = new();
 
-        private MenuSector CreateMenu(
-            AppInteractions appInteractions,
-            IAddConnectionInfoFactory connInfoFactory
-        )
+        private MenuSector CreateMenu(AppInteractions appInteractions)
         {
             static void doNothing() { }
 
@@ -149,52 +178,12 @@ namespace SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels
                 )
             );
 
-            var devs = new SourceCache<DeviceTypeViewModel, string>(x => x.Name);
-
-            devs
-                .Connect()
-                .SortBy(x => x.Name)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Bind(out var list)
-                .Subscribe();
-
-            async Task refreshDevices()
-            {
-                using var suspend = devs.SuspendNotifications();
-                devs.Clear();
-                for (int i = 0; i < 5; i++)
-                {
-                    devs.AddOrUpdate(
-                        new DeviceTypeViewModel(
-                            Guid.NewGuid().ToString()
-                        )
-                    );
-                }
-            }
-
-            var test = new MenuEndpoint(
-                3,
-                new OneActionViewModel(
-                    Observable.Return("TEST Add Connection"),
-                    () => ShowContent(
-                        new AddDevicePortViewModel(
-                            async() => HideContent(),
-                            async () => HideContent(),
-                            list,
-                            refreshDevices,
-                            connInfoFactory
-                        )
-                    )
-                )
-            );
-
             var devices = new HeadedMenuSector(
                 30,
                 Strings.Menu_Devices,
                 [
                     devices_Connections,
                     devices_Polling,
-                    test,
                 ]
             );
 

@@ -223,5 +223,79 @@ namespace SilvaViridis.Components.Extensions
                 data => !data.ShouldApply || data.IsValid,
                 data => message ?? data.Msg
             );
+
+        public static ValidationHelper CreateComparisonRule<TViewModel, TProperty, T1, T2, T3, TValue>(
+            this TViewModel vm,
+            Expression<Func<TViewModel, TProperty?>> property,
+            Expression<Func<TViewModel, T1?>> prop1,
+            Expression<Func<TViewModel, T2?>> prop2,
+            Expression<Func<TViewModel, T3?>> prop3,
+            Func<T1, T2, T3, TValue> process,
+            IObservable<TValue> value,
+            ComparisonOperation comparisonOperation,
+            IObservable<bool>? shouldApply,
+            IObservable<string> processDesc,
+            string? message
+        )
+            where TViewModel : ValidatableViewModelBase
+            where TValue :
+                INumberBase<TValue>,
+                IComparisonOperators<TValue, TValue, bool>
+            where T1 : struct
+            where T2 : struct
+            where T3 : struct
+            => vm.ValidationRule(
+                property,
+                vm
+                    .WhenAnyValue(prop1)
+                    .CombineLatest(
+                        vm.WhenAnyValue(prop2),
+                        vm.WhenAnyValue(prop3),
+                        value,
+                        ValidationStrings.MustBeComparisonFull.ValueObservable,
+                        GetComparisonString(comparisonOperation),
+                        processDesc,
+                        shouldApply ?? Observable.Return(true)
+                    )
+                    .Select(data => new
+                    {
+                        Prop1 = data.First,
+                        Prop2 = data.Second,
+                        Prop3 = data.Third,
+                        Value = data.Fourth,
+                        ErrorMsg = data.Fifth,
+                        ComparisonStr = data.Sixth,
+                        Description = data.Seventh,
+                        ShouldApply = data.Eighth,
+                    })
+                    .Select(data =>
+                    {
+                        return new
+                        {
+                            IsValid =
+                                data.Prop1 is null
+                                || data.Prop2 is null
+                                || data.Prop3 is null
+                                || Compare(
+                                    comparisonOperation,
+                                    process(
+                                        data.Prop1.Value,
+                                        data.Prop2.Value,
+                                        data.Prop3.Value
+                                    ),
+                                    data.Value
+                                ),
+                            Msg = string.Format(
+                                data.ErrorMsg,
+                                data.Description,
+                                data.ComparisonStr,
+                                data.Value
+                            ),
+                            data.ShouldApply,
+                        };
+                    }),
+                data => !data.ShouldApply || data.IsValid,
+                data => message ?? data.Msg
+            );
     }
 }

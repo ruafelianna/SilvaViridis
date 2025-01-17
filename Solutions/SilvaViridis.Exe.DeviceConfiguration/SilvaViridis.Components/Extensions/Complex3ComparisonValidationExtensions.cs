@@ -6,14 +6,15 @@ using static SilvaViridis.Components.Extensions.ValidationUtils;
 
 namespace SilvaViridis.Components.Extensions
 {
-    public static class ComplexComparisonValidationExtensions
+    public static class Complex3ComparisonValidationExtensions
     {
-        public static ValidationHelper RuleShouldBeLess<TViewModel, TProperty, T1, T2, TValue>(
+        public static ValidationHelper RuleShouldBeLess<TViewModel, TProperty, T1, T2, T3, TValue>(
             this TViewModel vm,
             Expression<Func<TViewModel, TProperty?>> property,
             Expression<Func<TViewModel, T1?>> prop1,
             Expression<Func<TViewModel, T2?>> prop2,
-            Func<T1, T2, TValue> process,
+            Expression<Func<TViewModel, T3?>> prop3,
+            Func<T1, T2, T3, TValue> process,
             IObservable<TValue> value,
             IObservable<string> processDesc,
             IObservable<bool>? shouldApply = null,
@@ -25,10 +26,12 @@ namespace SilvaViridis.Components.Extensions
                 IComparisonOperators<TValue, TValue, bool>
             where T1 : struct
             where T2 : struct
+            where T3 : struct
             => vm.CreateComparisonRule(
                 property,
                 prop1,
                 prop2,
+                prop3,
                 process,
                 value,
                 ComparisonOperation.Less,
@@ -37,12 +40,13 @@ namespace SilvaViridis.Components.Extensions
                 message
             );
 
-        public static ValidationHelper RuleShouldBeLessOrEqual<TViewModel, TProperty, T1, T2, TValue>(
+        public static ValidationHelper RuleShouldBeLessOrEqual<TViewModel, TProperty, T1, T2, T3, TValue>(
             this TViewModel vm,
             Expression<Func<TViewModel, TProperty?>> property,
             Expression<Func<TViewModel, T1?>> prop1,
             Expression<Func<TViewModel, T2?>> prop2,
-            Func<T1, T2, TValue> process,
+            Expression<Func<TViewModel, T3?>> prop3,
+            Func<T1, T2, T3, TValue> process,
             IObservable<TValue> value,
             IObservable<string> processDesc,
             IObservable<bool>? shouldApply = null,
@@ -54,10 +58,12 @@ namespace SilvaViridis.Components.Extensions
                 IComparisonOperators<TValue, TValue, bool>
             where T1 : struct
             where T2 : struct
+            where T3 : struct
             => vm.CreateComparisonRule(
                 property,
                 prop1,
                 prop2,
+                prop3,
                 process,
                 value,
                 ComparisonOperation.LessOrEqual,
@@ -66,12 +72,13 @@ namespace SilvaViridis.Components.Extensions
                 message
             );
 
-        public static ValidationHelper RuleShouldBeMore<TViewModel, TProperty, T1, T2, TValue>(
+        public static ValidationHelper RuleShouldBeMore<TViewModel, TProperty, T1, T2, T3, TValue>(
             this TViewModel vm,
             Expression<Func<TViewModel, TProperty?>> property,
             Expression<Func<TViewModel, T1?>> prop1,
             Expression<Func<TViewModel, T2?>> prop2,
-            Func<T1, T2, TValue> process,
+            Expression<Func<TViewModel, T3?>> prop3,
+            Func<T1, T2, T3, TValue> process,
             IObservable<TValue> value,
             IObservable<string> processDesc,
             IObservable<bool>? shouldApply = null,
@@ -83,10 +90,12 @@ namespace SilvaViridis.Components.Extensions
                 IComparisonOperators<TValue, TValue, bool>
             where T1 : struct
             where T2 : struct
+            where T3 : struct
             => vm.CreateComparisonRule(
                 property,
                 prop1,
                 prop2,
+                prop3,
                 process,
                 value,
                 ComparisonOperation.More,
@@ -95,12 +104,13 @@ namespace SilvaViridis.Components.Extensions
                 message
             );
 
-        public static ValidationHelper RuleShouldBeMoreOrEqual<TViewModel, TProperty, T1, T2, TValue>(
+        public static ValidationHelper RuleShouldBeMoreOrEqual<TViewModel, TProperty, T1, T2, T3, TValue>(
             this TViewModel vm,
             Expression<Func<TViewModel, TProperty?>> property,
             Expression<Func<TViewModel, T1?>> prop1,
             Expression<Func<TViewModel, T2?>> prop2,
-            Func<T1, T2, TValue> process,
+            Expression<Func<TViewModel, T3?>> prop3,
+            Func<T1, T2, T3, TValue> process,
             IObservable<TValue> value,
             IObservable<string> processDesc,
             IObservable<bool>? shouldApply = null,
@@ -112,10 +122,12 @@ namespace SilvaViridis.Components.Extensions
                 IComparisonOperators<TValue, TValue, bool>
             where T1 : struct
             where T2 : struct
+            where T3 : struct
             => vm.CreateComparisonRule(
                 property,
                 prop1,
                 prop2,
+                prop3,
                 process,
                 value,
                 ComparisonOperation.MoreOrEqual,
@@ -124,12 +136,13 @@ namespace SilvaViridis.Components.Extensions
                 message
             );
 
-        public static ValidationHelper RuleShouldBeEqual<TViewModel, TProperty, T1, T2, TValue>(
+        public static ValidationHelper RuleShouldBeEqual<TViewModel, TProperty, T1, T2, T3, TValue>(
             this TViewModel vm,
             Expression<Func<TViewModel, TProperty?>> property,
             Expression<Func<TViewModel, T1?>> prop1,
             Expression<Func<TViewModel, T2?>> prop2,
-            Func<T1, T2, TValue> process,
+            Expression<Func<TViewModel, T3?>> prop3,
+            Func<T1, T2, T3, TValue> process,
             IObservable<TValue> value,
             IObservable<string> processDesc,
             IObservable<bool>? shouldApply = null,
@@ -141,10 +154,12 @@ namespace SilvaViridis.Components.Extensions
                 IComparisonOperators<TValue, TValue, bool>
             where T1 : struct
             where T2 : struct
+            where T3 : struct
             => vm.CreateComparisonRule(
                 property,
                 prop1,
                 prop2,
+                prop3,
                 process,
                 value,
                 ComparisonOperation.Equal,
@@ -153,12 +168,13 @@ namespace SilvaViridis.Components.Extensions
                 message
             );
 
-        public static ValidationHelper RuleShouldBeNotEqual<TViewModel, TProperty, T1, T2, TValue>(
+        public static ValidationHelper RuleShouldBeNotEqual<TViewModel, TProperty, T1, T2, T3, TValue>(
             this TViewModel vm,
             Expression<Func<TViewModel, TProperty?>> property,
             Expression<Func<TViewModel, T1?>> prop1,
             Expression<Func<TViewModel, T2?>> prop2,
-            Func<T1, T2, TValue> process,
+            Expression<Func<TViewModel, T3?>> prop3,
+            Func<T1, T2, T3, TValue> process,
             IObservable<TValue> value,
             IObservable<string> processDesc,
             IObservable<bool>? shouldApply = null,
@@ -170,10 +186,12 @@ namespace SilvaViridis.Components.Extensions
                 IComparisonOperators<TValue, TValue, bool>
             where T1 : struct
             where T2 : struct
+            where T3 : struct
             => vm.CreateComparisonRule(
                 property,
                 prop1,
                 prop2,
+                prop3,
                 process,
                 value,
                 ComparisonOperation.NotEqual,

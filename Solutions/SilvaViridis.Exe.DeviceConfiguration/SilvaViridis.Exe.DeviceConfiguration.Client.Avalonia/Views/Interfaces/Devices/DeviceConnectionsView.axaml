@@ -61,8 +61,8 @@
                 <ContentControl Content="{Binding ConnectionInfo}"
                                 Grid.Row="3" />
 
-                <Rectangle Grid.Row="4"
-                           Classes="rect-line"/>
+                <Separator Grid.Row="4"
+                           Classes="connection-line" />
 
                 <ItemsControl ItemsSource="{Binding Addresses}"
                               Grid.Row="5">

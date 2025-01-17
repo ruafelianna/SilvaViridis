@@ -8,16 +8,19 @@
              xmlns:tr="using:SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations"
              xmlns:vm="using:SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices"
              xmlns:ic="using:FluentIcons.Avalonia">
-  <Grid RowDefinitions="Auto,Auto,Auto">
+  <Grid RowDefinitions="Auto,Auto,*">
     <TextBlock Text="{Binding Path=Value,
                       Source={x:Static tr:Strings.AddConnection_Header}}"
                Grid.Row="0"
-               Classes="form-header"/>
+               Classes="form-header" />
+
+    <Separator Grid.Row="1"
+               Classes="header-line" />
 
     <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  Grid.Row="1">
+                  Grid.Row="2">
       <Grid ColumnDefinitions="Auto,Auto,Auto"
-            RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+            RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
             Classes="form-content">
         <TextBlock Text="{Binding Path=Value,
                           Source={x:Static tr:Strings.AddConnection_Name}}"
@@ -103,20 +106,21 @@
                             Converter={x:Static ObjectConverters.IsNotNull}}">
           <ContentControl Content="{Binding ProtocolInfo}"/>
         </Border>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="6"
+                    Grid.ColumnSpan="3"
+                    Classes="form-btn-group">
+          <Button Content="{Binding Path=Value,
+                            Source={x:Static tr:Strings.Cmd_Cancel}}"
+                  Command="{Binding CmdCancel}"
+                  Classes="form-btn"/>
+          <Button Content="{Binding Path=Value,
+                            Source={x:Static tr:Strings.Cmd_Create}}"
+                  Command="{Binding CmdSave}"
+                  Classes="form-btn"/>
+        </StackPanel>
       </Grid>
     </ScrollViewer>
-
-    <StackPanel Orientation="Horizontal"
-                Grid.Row="2"
-                Classes="form-btn-group">
-      <Button Content="{Binding Path=Value,
-                        Source={x:Static tr:Strings.Cmd_Cancel}}"
-              Command="{Binding CmdCancel}"
-              Classes="form-btn"/>
-      <Button Content="{Binding Path=Value,
-                        Source={x:Static tr:Strings.Cmd_Create}}"
-              Command="{Binding CmdSave}"
-              Classes="form-btn"/>
-    </StackPanel>
   </Grid>
 </UserControl>

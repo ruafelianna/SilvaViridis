@@ -7,14 +7,17 @@
              x:DataType="vm:BatchListViewModelProxy"
              xmlns:vm="using:SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.ViewModels.Interfaces.Batches"
              xmlns:tr="using:SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations">
-  <Grid RowDefinitions="Auto,Auto,*">
+  <Grid RowDefinitions="Auto,Auto,Auto,*">
     <TextBlock Text="{Binding Path=Value,
                       Source={x:Static tr:Strings.BatchesList_Header}}"
                Grid.Row="0"
                Classes="form-header"/>
 
+    <Separator Grid.Row="1"
+               Classes="header-line" />
+
     <StackPanel Orientation="Horizontal"
-                Grid.Row="1"
+                Grid.Row="2"
                 Classes="form-search-group">
       <TextBlock Text="{Binding Path=Value,
                         Source={x:Static tr:Strings.BatchesList_SearchBtn}}" />
@@ -24,10 +27,9 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Auto"
-                  Grid.Row="2"
+                  Grid.Row="3"
                   Classes="form-table">
-      <TreeDataGrid Source="{Binding TableSource}"
-                  Grid.Row="2"/>
+      <TreeDataGrid Source="{Binding TableSource}" />
     </ScrollViewer>
   </Grid>
 </UserControl>

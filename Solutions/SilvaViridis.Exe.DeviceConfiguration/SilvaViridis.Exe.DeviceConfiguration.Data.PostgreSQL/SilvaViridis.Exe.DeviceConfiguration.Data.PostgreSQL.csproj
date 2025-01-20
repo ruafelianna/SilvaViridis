@@ -1,1 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk" />
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <AdditionalFiles Include="**\*.toml" />
+    <EmbeddedResource Include="**\*.toml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SilvaViridis.Common.Localization\SilvaViridis.Common.Localization.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Common.Text\SilvaViridis.Common.Text.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Exe.DeviceConfiguration.Data\SilvaViridis.Exe.DeviceConfiguration.Data.csproj" />
+  </ItemGroup>
+</Project>

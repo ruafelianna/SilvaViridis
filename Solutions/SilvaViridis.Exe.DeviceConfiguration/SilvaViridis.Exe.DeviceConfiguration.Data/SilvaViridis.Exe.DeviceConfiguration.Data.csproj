@@ -1,1 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk" />
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\SilvaViridis.Data\SilvaViridis.Data.csproj" />
+    <ProjectReference Include="..\SilvaViridis.Exe.DeviceConfiguration.Data.Abstractions\SilvaViridis.Exe.DeviceConfiguration.Data.Abstractions.csproj" />
+  </ItemGroup>
+</Project>

@@ -38,6 +38,7 @@
     <PackageVersion Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="$(Version_Microsoft_Analyzer)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="$(Version_Microsoft_EFCore)" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="$(Version_Microsoft_EFCore)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="$(Version_Microsoft_EFCore)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(Version_Microsoft)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="$(Version_Microsoft)" />
@@ -47,6 +48,9 @@
     <PackageVersion Include="HanumanInstitute.MvvmDialogs.Avalonia" Version="$(Version_MvvmDialogs)" />
     <PackageVersion Include="HanumanInstitute.MvvmDialogs.Avalonia.MessageBox" Version="$(Version_MvvmDialogs)" />
     <PackageVersion Include="HanumanInstitute.MvvmDialogs.Avalonia.DialogHost" Version="$(Version_MvvmDialogs)" />
+  </ItemGroup>
+  <ItemGroup Label="NpgsqlPackages">
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="$(Version_Microsoft_EFCore)" />
   </ItemGroup>
   <ItemGroup Label="ReactiveUIPackages">
     <PackageVersion Include="ReactiveUI" Version="$(Version_ReactiveUI)" />

@@ -1,0 +1,106 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Devices.DeviceConnectionsView"
+             x:DataType="vm:DeviceConnectionsViewModel"
+             xmlns:vm="using:SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Devices"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:tr="using:SilvaViridis.Exe.DeviceConfiguration.Client.Assets.Translations">
+  <Grid RowDefinitions="Auto,Auto,*">
+    <TextBlock Text="{Binding Path=Value, Source={x:Static tr:Strings.DeviceConnections_Header}}"
+               Classes="form-header"
+               Grid.Row="0" />
+
+    <Button Grid.Row="1"
+            Width="{Binding #ScrollViewer_DevPorts.Bounds.Width}"
+            Classes="btn-devport-add"
+            Command="{Binding AddConnection}">
+      <ic:SymbolIcon Symbol="MailInboxAdd"
+                     IconVariant="Regular"
+                     Classes="symbol-add"/>
+    </Button>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  Grid.Row="2"
+                  Classes="form-table"
+                  Name="ScrollViewer_DevPorts">
+      <ItemsControl ItemsSource="{Binding Connections}"
+                    Classes="form-table-data">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <WrapPanel />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Border Classes="border-devport">
+              <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto"
+                    ColumnDefinitions="Auto">
+                <TextBlock Text="{Binding Device.Name}"
+                           Grid.Row="0" />
+
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal">
+                  <CheckBox IsChecked="{Binding IsChosen}" />
+
+                  <Border Classes="border-devport-online"
+                          Classes.online="{Binding IsOnline}"
+                          Classes.offline="{Binding !IsOnline}"/>
+
+                  <TextBlock Text="{Binding Name}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="2">
+                  <TextBlock Text="{Binding Connection.Connection}" />
+                  <TextBlock Text="{Binding Protocol.Protocol}" />
+                </StackPanel>
+
+                <ContentControl Content="{Binding ConnectionInfo}"
+                                Grid.Row="3" />
+
+                <Separator Grid.Row="4"
+                           Classes="connection-line" />
+
+                <ItemsControl ItemsSource="{Binding Addresses}"
+                              Grid.Row="5">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <UniformGrid Columns="5"/>
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <ToggleButton IsChecked="{Binding IsChosen}"
+                                    Classes.chosen="{Binding IsChosen}"
+                                    Classes.notchosen="{Binding !IsChosen}"
+                                    Classes="tbtn-devaddr">
+                        <StackPanel>
+                          <StackPanel Orientation="Horizontal">
+                            <Border Classes.online="{Binding IsOnline}"
+                                    Classes.offline="{Binding !IsOnline}"
+                                    Classes="border-devaddr-online" />
+                            <ContentControl Content="{Binding ProtocolInfo}" />
+                          </StackPanel>
+                        </StackPanel>
+                      </ToggleButton>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Button Grid.Row="6">
+                  <ic:SymbolIcon Symbol="DocumentAdd"
+                                 IconVariant="Regular"
+                                 Classes="symbol-add"/>
+                </Button>
+              </Grid>
+            </Border>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ScrollViewer>
+  </Grid>
+</UserControl>

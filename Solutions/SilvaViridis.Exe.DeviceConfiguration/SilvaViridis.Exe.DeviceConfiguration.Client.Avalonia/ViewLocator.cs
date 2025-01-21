@@ -1,22 +1,22 @@
 using Avalonia.Controls;
 using HanumanInstitute.MvvmDialogs;
 using HanumanInstitute.MvvmDialogs.Avalonia;
-using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.ViewModels.Interfaces.Batches;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.ViewModels.Batches;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Batches;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Connections;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Devices;
 using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Dialogs;
-using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Batches;
-using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Connections;
-using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Devices;
-using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Protocols;
-using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Interfaces.Settings;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Protocols;
+using SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia.Views.Settings;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Batches;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Connections;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Connections.Abstractions;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Devices;
 using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Dialogs;
-using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Batches;
-using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Connections;
-using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Connections.Abstractions;
-using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Devices;
-using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Protocols;
-using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Interfaces.Settings;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Protocols;
+using SilvaViridis.Exe.DeviceConfiguration.Client.ViewModels.Settings;
 
 namespace SilvaViridis.Exe.DeviceConfiguration.Client.Avalonia
 {

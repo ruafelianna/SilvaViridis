@@ -24,6 +24,7 @@
   </ItemGroup>
   <ItemGroup Label="AvaloniaPackages">
     <PackageVersion Include="Avalonia" Version="$(Version_Avalonia)" />
+    <PackageVersion Include="Avalonia.Android" Version="$(Version_Avalonia)" />
     <PackageVersion Include="Avalonia.Controls.TreeDataGrid" Version="11.0.10" />
     <PackageVersion Include="Avalonia.Desktop" Version="$(Version_Avalonia)" />
     <PackageVersion Include="Avalonia.Diagnostics" Version="$(Version_Avalonia)" />
@@ -63,6 +64,9 @@
     <PackageVersion Include="System.IO.Ports" Version="$(Version_Microsoft)" />
     <PackageVersion Include="System.Reactive" Version="6.0.1" />
     <PackageVersion Include="System.Runtime" Version="4.3.1" />
+  </ItemGroup>
+  <ItemGroup Label="Xamarin">
+    <PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.0.1.5" />
   </ItemGroup>
   <ItemGroup Label="OtherPackages">
     <PackageVersion Include="BaGet.Protocol" Version="0.4.0-preview2" />
